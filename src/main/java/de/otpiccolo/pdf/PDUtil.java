@@ -2,6 +2,9 @@ package de.otpiccolo.pdf;
 
 import java.io.IOException;
 
+import org.apache.pdfbox.cos.COSDictionary;
+import org.apache.pdfbox.cos.COSName;
+import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
@@ -87,6 +90,24 @@ public class PDUtil {
 			ret[i] = ret[i - 1] + split[i].length();
 		}
 		return ret;
+	}
+
+	/**
+	 * Copies a page, so the origin page will not be removed from its original
+	 * document, when inserted into a new document.
+	 *
+	 * @param origin
+	 *            The origin page.
+	 * @return The copied page.
+	 */
+	public static final PDPage copyPage(final PDPage origin) {
+		final COSDictionary pageDict = origin.getCOSObject();
+		final COSDictionary newPageDict = new COSDictionary(pageDict);
+
+		// Remove annotations, as they retain information to the old document.
+		newPageDict.removeItem(COSName.ANNOTS);
+
+		return new PDPage(newPageDict);
 	}
 
 }
