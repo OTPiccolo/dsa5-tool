@@ -31,9 +31,9 @@ public class PredigtWriter extends ADataWriter {
 	public float writeData(final PDDocument doc, final PDPage page, final float verticalOffset) throws IOException {
 		float offset = verticalOffset;
 		try (PDPageContentStream content = new PDPageContentStream(doc, page, AppendMode.APPEND, true, true)) {
-			for (final PredigtData nachteil : data) {
-				offset -= writeTitle(content, offset, nachteil.name()) + 5f;
-				offset -= writeParagraph(page, content, offset, nachteil.rule()) + 15f;
+			for (final PredigtData predigt : data) {
+				offset -= writeTitle(content, offset, predigt.name()) + 5f;
+				offset -= writeParagraph(page, content, offset, predigt.rule()) + 15f;
 			}
 		}
 		// Return height. Remove last Predigt spacing.

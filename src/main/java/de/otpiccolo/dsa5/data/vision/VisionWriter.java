@@ -31,9 +31,9 @@ public class VisionWriter extends ADataWriter {
 	public float writeData(final PDDocument doc, final PDPage page, final float verticalOffset) throws IOException {
 		float offset = verticalOffset;
 		try (PDPageContentStream content = new PDPageContentStream(doc, page, AppendMode.APPEND, true, true)) {
-			for (final VisionData nachteil : data) {
-				offset -= writeTitle(content, offset, nachteil.name()) + 5f;
-				offset -= writeParagraph(page, content, offset, nachteil.rule()) + 15f;
+			for (final VisionData vision : data) {
+				offset -= writeTitle(content, offset, vision.name()) + 5f;
+				offset -= writeParagraph(page, content, offset, vision.rule()) + 15f;
 			}
 		}
 		// Return height. Remove last Vision spacing.

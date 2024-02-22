@@ -25,8 +25,8 @@ public class VisionReader extends AUlissesReader<VisionData> {
 		return new VisionData(name, rule);
 	}
 
-	private String getPage(final String nachteilName) {
-		return "/vision.html?vision=" + nachteilName;
+	private String getPage(final String visionName) {
+		return "/vision.html?vision=" + visionName;
 	}
 
 }

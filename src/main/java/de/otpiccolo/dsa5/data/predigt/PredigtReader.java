@@ -25,8 +25,8 @@ public class PredigtReader extends AUlissesReader<PredigtData> {
 		return new PredigtData(name, rule);
 	}
 
-	private String getPage(final String nachteilName) {
-		return "/predigt.html?predigt=" + nachteilName;
+	private String getPage(final String predigtName) {
+		return "/predigt.html?predigt=" + predigtName;
 	}
 
 }
