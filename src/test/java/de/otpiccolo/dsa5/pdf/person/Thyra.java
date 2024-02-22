@@ -18,6 +18,7 @@ import de.otpiccolo.dsa5.pdf.data.paragraph.ParagraphData;
 import de.otpiccolo.dsa5.pdf.data.paragraph.ParagraphWriter;
 import de.otpiccolo.dsa5.pdf.page.DefaultPage;
 import de.otpiccolo.dsa5.pdf.page.IPage;
+import de.otpiccolo.dsa5.pdf.page.predefined.ZauberModPage;
 
 /**
  * Information about Thyra.
@@ -42,7 +43,7 @@ public class Thyra extends Person {
 		zauberPage2.getWriters().add(fillWriter(ZauberWriter::new, ZauberReader::new, "Katzenaugen", "Krötensprung", "Odem Arcanum", "Tiergedanken"));
 
 		final IPage bioPage = getBioPage();
-		final IPage modPage = GeneralData.getZauberModPage();
+		final IPage modPage = new ZauberModPage();
 
 		setPages(Stream.of(bioPage, vorteilNachteilPage, kampfPage, zauberPage1, zauberPage2, modPage));
 	}

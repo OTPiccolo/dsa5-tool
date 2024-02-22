@@ -16,6 +16,8 @@ import de.otpiccolo.dsa5.data.zeremonien.ZeremonieReader;
 import de.otpiccolo.dsa5.data.zeremonien.ZeremonieWriter;
 import de.otpiccolo.dsa5.pdf.page.DefaultPage;
 import de.otpiccolo.dsa5.pdf.page.IPage;
+import de.otpiccolo.dsa5.pdf.page.predefined.SegenPage;
+import de.otpiccolo.dsa5.pdf.page.predefined.ZauberModPage;
 
 /**
  * Information about Lothar.
@@ -40,9 +42,10 @@ public class Lothar extends Person {
 		final DefaultPage zeremoniePage = new DefaultPage("Zeremonien");
 		zeremoniePage.getWriters().add(fillWriter(ZeremonieWriter::new, ZeremonieReader::new, "Gänsegestalt", "Nahrungsreinigung", "Reisesegen", "Sättigung", "Segnung des Heims", "Speisung", "Weihe des Heims"));
 
-		final IPage modPage = GeneralData.getZauberModPage();
+		final IPage segenPage = new SegenPage();
+		final IPage modPage = new ZauberModPage();
 
-		setPages(Stream.of(vorteilNachteilPage, karmaPage, liturgiePage, zeremoniePage, modPage));
+		setPages(Stream.of(vorteilNachteilPage, karmaPage, liturgiePage, zeremoniePage, segenPage, modPage));
 	}
 
 }

@@ -1,12 +1,11 @@
 package de.otpiccolo.dsa5.pdf.person;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 import de.otpiccolo.dsa5.pdf.PdfWriter;
+import de.otpiccolo.dsa5.pdf.data.ADataWriter;
 import de.otpiccolo.dsa5.pdf.data.IDataReader;
 import de.otpiccolo.dsa5.pdf.data.IDataWriter;
 
@@ -34,12 +33,7 @@ public class Person extends PdfWriter {
 	 * @return The data writer, already filled with data.
 	 */
 	protected <T extends IDataWriter, U extends IDataReader<String, V>, V> T fillWriter(final Function<Collection<V>, T> writer, final Supplier<U> reader, final String... data) {
-		final List<V> readData = new ArrayList<>();
-		final U suppliedReader = reader.get();
-		for (final String date : data) {
-			readData.add(suppliedReader.readData(date));
-		}
-		return writer.apply(readData);
+		return ADataWriter.fillWriter(writer, reader, data);
 	}
 
 }
