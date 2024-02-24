@@ -13,7 +13,7 @@ import de.otpiccolo.dsa5.pdf.person.Thyra;
 public class PersonTest {
 
 	@Test
-	// @Disabled
+	@Disabled
 	public void writeLothar() throws Exception {
 		final String source = "D:\\Schieb\\Lothar.pdf";
 		final String destination = "C:\\Users\\OT Piccolo\\Desktop\\temp\\test.pdf";
