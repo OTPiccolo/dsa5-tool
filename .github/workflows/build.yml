@@ -45,6 +45,6 @@ jobs:
     - run: mkdir staging && cp target/*.jar staging
     - uses: actions/upload-artifact@v3
       with:
-        name: Package
+        name: dsa5-tool
         path: staging
-        compression-level: 0 # no compression
+        #once v4 is used: compression-level: 0 # no compression
