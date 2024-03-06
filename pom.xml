@@ -7,6 +7,14 @@
   <name>DSA 5 helper</name>
   <description>Helper to generate PDFs for DSA 5</description>
 
+  <distributionManagement>
+   <repository>
+     <id>github</id>
+     <name>GitHub OTPiccolo Apache Maven Packages</name>
+     <url>https://maven.pkg.github.com/otpiccolo/dsa5-tool</url>
+   </repository>
+  </distributionManagement>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>17</maven.compiler.source>
