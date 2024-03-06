@@ -27,6 +27,8 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
       run: mvn -B deploy --file pom.xml
 
   publish:
