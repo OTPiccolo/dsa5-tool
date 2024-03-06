@@ -28,7 +28,7 @@ jobs:
         cache: maven
     - name: Build with Maven
       env:
-        GITHUB_TOKEN: ${{ github.token }}
+        GITHUB_TOKEN: ${{ github.token }} # 'github' (inside brackets) must match the ID given in distributionManagement in pom.xml
       run: mvn -B deploy --file pom.xml
 
   publish:
