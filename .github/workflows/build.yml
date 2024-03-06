@@ -27,9 +27,10 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B deploy --file pom.xml
 
   publish:
+    if: false # currently disabled
     runs-on: ubuntu-latest
     needs: [build]
 
