@@ -39,7 +39,7 @@ jobs:
         package-name: ' de.otpiccolo.dsa5'
         package-type: 'maven'
         min-versions-to-keep: 1
-        delete-only-pre-release-versions: "true"
+        delete-only-untagged-versions: 'true'
 
   publish:
     if: false # currently disabled
