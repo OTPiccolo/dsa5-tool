@@ -31,6 +31,18 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }} # 'github' (inside brackets) must match the ID given in distributionManagement in pom.xml
       run: mvn -B deploy --file pom.xml
 
+  cleanup-repo:
+    runs-on: ubunut-latest
+    needs: [build]
+
+    steps:
+    - uses: actions/delete-package-versions@v5
+      with: 
+        package-name: 'test-package'
+        package-type: 'maven'
+        min-versions-to-keep: 1
+        delete-only-pre-release-versions: "true"
+
   publish:
     if: false # currently disabled
     runs-on: ubuntu-latest
