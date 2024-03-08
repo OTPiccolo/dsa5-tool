@@ -36,7 +36,7 @@ jobs:
     - name: Cleanup older packages
       uses: actions/delete-package-versions@v5
       with: 
-        package-name: ' de.otpiccolo.dsa5'
+        package-name: ' de.otpiccolo:dsa5'
         package-type: 'maven'
         min-versions-to-keep: 1
         delete-only-untagged-versions: 'true'
