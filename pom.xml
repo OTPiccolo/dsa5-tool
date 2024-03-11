@@ -12,6 +12,7 @@
      <id>github</id>
      <name>GitHub OTPiccolo Apache Maven Packages</name>
      <url>https://maven.pkg.github.com/otpiccolo/dsa5-tool</url>
+     <uniqueVersion>false</uniqueVersion>
    </repository>
   </distributionManagement>
 
