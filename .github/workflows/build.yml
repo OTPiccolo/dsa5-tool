@@ -30,7 +30,7 @@ jobs:
 
     - name: Build with Maven
       env:
-        GITHUB_TOKEN: ${{ github.token }} # 'github' (inside brackets) must match the ID given in distributionManagement in pom.xml
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # See https://docs.github.com/en/actions/publishing-packages/publishing-java-packages-with-maven
       run: mvn -B deploy --file pom.xml
 
   publish:
