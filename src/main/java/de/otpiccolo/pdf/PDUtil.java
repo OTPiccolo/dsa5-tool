@@ -6,6 +6,7 @@ import org.apache.pdfbox.cos.COSDictionary;
 import org.apache.pdfbox.cos.COSName;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
@@ -52,10 +53,8 @@ public class PDUtil {
 	 *             If an error happened writing to the content stream.
 	 */
 	public static final float wrapText(final String text, final PDPageContentStream content, final PDFont font, final int fontSize, final float paragraphWidth) throws IOException {
-		// Make sure that the first separation between lines isn't calculated
-		// into the starting position.
 		final float lineSpacing = 2f;
-		float height = -lineSpacing;
+		float height = 0f;
 
 		int startChar = 0;
 		int endChar = 0;
@@ -65,8 +64,8 @@ public class PDUtil {
 			if (startChar < endChar && width > paragraphWidth) {
 				// Draw partial text and increase height
 				height += shiftHeight;
-				content.newLineAtOffset(0f, -shiftHeight);
 				content.showText(text.substring(startChar, endChar));
+				content.newLineAtOffset(0f, -shiftHeight);
 				startChar = endChar;
 			}
 			endChar = i;
@@ -74,11 +73,10 @@ public class PDUtil {
 
 		// Last piece of text
 		height += shiftHeight;
-		content.newLineAtOffset(0f, -shiftHeight);
 		content.showText(text.substring(startChar));
 
-		// Return height of paragraph that is used.
-		return height;
+		// Return height of paragraph that is used (one line spacing too much).
+		return height - lineSpacing;
 	}
 
 	// Calculate possible points to split a sentence between words.
@@ -108,6 +106,41 @@ public class PDUtil {
 		newPageDict.removeItem(COSName.ANNOTS);
 
 		return new PDPage(newPageDict);
+	}
+
+	/**
+	 * Returns a copy of the given rectangle.
+	 *
+	 * @param rectangle
+	 *            The rectangle to copy.
+	 * @return The copied rectangle.
+	 */
+	public static final PDRectangle copyRectangle(final PDRectangle rectangle) {
+		return new PDRectangle(rectangle.getLowerLeftX(), rectangle.getLowerLeftY(), rectangle.getWidth(), rectangle.getHeight());
+	}
+
+	/**
+	 * Draws a rectangle on the given content.
+	 *
+	 * @param rectangle
+	 *            The rectangle to draw. Will be drawn at the position of the
+	 *            four corners.
+	 * @param content
+	 *            The content to draw on.
+	 * @throws IOException
+	 *             If the content stream could not be written to.
+	 */
+	public static final void drawRectangle(final PDRectangle rectangle, final PDPageContentStream content) throws IOException {
+		final float leftX = rectangle.getLowerLeftX();
+		final float rightX = rectangle.getUpperRightX();
+		final float lowerY = rectangle.getLowerLeftY();
+		final float upperY = rectangle.getUpperRightY();
+		content.moveTo(leftX, upperY);
+		content.lineTo(rightX, upperY);
+		content.lineTo(rightX, lowerY);
+		content.lineTo(leftX, lowerY);
+		content.lineTo(leftX, upperY);
+		content.stroke();
 	}
 
 }

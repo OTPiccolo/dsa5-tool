@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 
 import de.otpiccolo.pdf.PDUtil;
@@ -52,55 +52,92 @@ public abstract class ADataWriter implements IDataWriter {
 	/**
 	 * Writes a title.
 	 *
-	 * @param content
-	 *            The content to write on.
-	 * @param vOffset
-	 *            The vertical offset on the content.
 	 * @param title
 	 *            The title to write.
-	 * @return The used height of the title.
+	 * @param content
+	 *            The content to write on.
+	 * @param availableSpace
+	 *            The available space where data can be written to.
+	 * @param spacing
+	 *            Spacing to add for the next paragraph.
+	 * @return The new available space. It is the available space given to this
+	 *         function, without the used up space after data has been written.
 	 * @throws IOException
 	 *             If an error happened writing to the content stream.
 	 */
-	protected float writeTitle(final PDPageContentStream content, final float vOffset, final String title) throws IOException {
+	protected PDRectangle writeTitle(final String title, final PDPageContentStream content, final PDRectangle availableSpace, final float spacing) throws IOException {
 		final PDFont font = getTitleFont();
 		final int fontSize = getFontSize();
 		final float titleHeight = font.getFontDescriptor().getFontBoundingBox().getHeight() / 1000 * fontSize;
 
 		content.beginText();
 		content.setFont(font, fontSize);
-		content.newLineAtOffset(PDUtil.PAGE_MARGIN, vOffset - titleHeight);
+		content.newLineAtOffset(availableSpace.getLowerLeftX(), availableSpace.getUpperRightY() - titleHeight);
 		content.showText(title);
 		content.endText();
-		return titleHeight;
+		final float height = titleHeight + spacing;
+
+		if (isDrawRectangle()) {
+			final PDRectangle rectangle = new PDRectangle(availableSpace.getLowerLeftX(), availableSpace.getUpperRightY() - height, availableSpace.getWidth(), height);
+			PDUtil.drawRectangle(rectangle, content);
+		}
+
+		return new PDRectangle(availableSpace.getLowerLeftX(), availableSpace.getLowerLeftY(), availableSpace.getWidth(), availableSpace.getHeight() - height);
 	}
 
 	/**
 	 * Writes a paragraph.
 	 *
-	 * @param page
-	 *            The page to write on.
-	 * @param content
-	 *            The content to write on.
-	 * @param vOffset
-	 *            The vertical offset on the content.
 	 * @param paragraph
 	 *            The paragraph to write. It will be automatically wrapped on
 	 *            the page boundary.
-	 * @return The used height of the paragraph.
+	 * @param content
+	 *            The content to write on.
+	 * @param availableSpace
+	 *            The available space where data can be written to.
+	 * @param spacing
+	 *            Spacing to add for the next paragraph.
+	 * @return The new available space. It is the available space given to this
+	 *         function, without the used up space after data has been written.
 	 * @throws IOException
 	 *             If an error happened writing to the content stream.
 	 */
-	protected float writeParagraph(final PDPage page, final PDPageContentStream content, final float vOffset, final String paragraph) throws IOException {
+	protected PDRectangle writeParagraph(final String paragraph, final PDPageContentStream content, final PDRectangle availableSpace, final float spacing) throws IOException {
 		final PDFont font = getContentFont();
 		final int fontSize = getFontSize();
+		final float fontHeight = font.getFontDescriptor().getFontBoundingBox().getHeight() / 1000 * fontSize;
 
 		content.beginText();
 		content.setFont(font, fontSize);
-		content.newLineAtOffset(PDUtil.PAGE_MARGIN, vOffset);
-		final float height = PDUtil.wrapText(paragraph, content, font, fontSize, page.getMediaBox().getWidth() - 2f * PDUtil.PAGE_MARGIN);
+		content.newLineAtOffset(availableSpace.getLowerLeftX(), availableSpace.getUpperRightY() - fontHeight);
+		final float height = PDUtil.wrapText(paragraph, content, font, fontSize, availableSpace.getWidth()) + spacing;
 		content.endText();
-		return height;
+
+		if (isDrawRectangle()) {
+			final PDRectangle rectangle = new PDRectangle(availableSpace.getLowerLeftX(), availableSpace.getUpperRightY() - height, availableSpace.getWidth(), height);
+			PDUtil.drawRectangle(rectangle, content);
+		}
+
+		return new PDRectangle(availableSpace.getLowerLeftX(), availableSpace.getLowerLeftY(), availableSpace.getWidth(), availableSpace.getHeight() - height);
+	}
+
+	/**
+	 * Draws a rectangle, if configured via {@link #isDrawRectangle()}.
+	 *
+	 * @param content
+	 *            The content to draw on.
+	 * @param newAvailableSpace
+	 *            The available space after having written all data.
+	 * @param oldAvailableSpace
+	 *            The available space before having written all data.
+	 * @throws IOException
+	 *             If the content stream could not be written.
+	 */
+	protected void drawRectangle(final PDPageContentStream content, final PDRectangle newAvailableSpace, final PDRectangle oldAvailableSpace) throws IOException {
+		if (isDrawRectangle()) {
+			final PDRectangle rectangle = new PDRectangle(newAvailableSpace.getLowerLeftX(), oldAvailableSpace.getUpperRightY() - (oldAvailableSpace.getHeight() - newAvailableSpace.getHeight()), oldAvailableSpace.getWidth(), oldAvailableSpace.getHeight() - newAvailableSpace.getHeight());
+			PDUtil.drawRectangle(rectangle, content);
+		}
 	}
 
 	/**

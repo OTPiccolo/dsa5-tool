@@ -7,8 +7,10 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.PDPageContentStream.AppendMode;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
 
 import de.otpiccolo.dsa5.pdf.data.ADataWriter;
+import de.otpiccolo.pdf.PDUtil;
 
 /**
  * Class to write Paragraphen to a document.
@@ -42,18 +44,23 @@ public class ParagraphWriter extends ADataWriter {
 	}
 
 	@Override
-	public float writeData(final PDDocument doc, final PDPage page, final float verticalOffset) throws IOException {
-		float offset = verticalOffset;
+	public PDRectangle writeData(final PDDocument doc, final PDPage page, final PDRectangle availableSpace) throws IOException {
+		// public float writeData(final PDDocument doc, final PDPage page, final
+		// float verticalOffset) throws IOException {
+		PDRectangle space = PDUtil.copyRectangle(availableSpace);
 		try (PDPageContentStream content = new PDPageContentStream(doc, page, AppendMode.APPEND, true, true)) {
 			if (title != null) {
-				offset -= writeTitle(content, offset, title) + 5f;
+				space = writeTitle(title, content, space, 5f);
 			}
 			for (final ParagraphData data : paragraphs) {
-				offset -= writeParagraph(page, content, offset, data.paragraph()) + 5f;
+				space = writeParagraph(data.paragraph(), content, space, 5f);
 			}
+			// Remove last Paragraph spacing.
+			space.setUpperRightY(space.getUpperRightY() + 5f);
+			drawRectangle(content, space, availableSpace);
 		}
-		// Return height. Remove last Paragraph spacing.
-		return verticalOffset - offset - 5f;
+
+		return space;
 	}
 
 }

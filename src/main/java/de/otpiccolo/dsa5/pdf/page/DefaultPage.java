@@ -44,21 +44,25 @@ public class DefaultPage implements IPage {
 	public void writePage(final PDDocument doc) throws IOException {
 		page = new PDPage(PDRectangle.A4);
 		doc.addPage(page);
+
+		final float pageMargin = PDUtil.PAGE_MARGIN;
 		final PDRectangle mediaBox = page.getMediaBox();
-		float verticalOffset = mediaBox.getUpperRightY() - PDUtil.PAGE_MARGIN;
+		PDRectangle availableSpace = new PDRectangle(mediaBox.getLowerLeftX() + pageMargin, mediaBox.getLowerLeftY() + pageMargin, mediaBox.getWidth() - 2 * pageMargin, mediaBox.getHeight() - 2 * pageMargin);
 
 		if (getTitle() != null) {
 			try (PDPageContentStream content = new PDPageContentStream(doc, page)) {
-				verticalOffset -= writeTitle(content, verticalOffset) + 20f;
+				writeTitle(content, availableSpace);
+				availableSpace.setUpperRightY(availableSpace.getUpperRightY() - 20f);
 			}
 		}
 
 		for (final IDataWriter writer : getWriters()) {
-			verticalOffset -= writer.writeData(doc, page, verticalOffset) + 15f;
+			availableSpace = writer.writeData(doc, page, availableSpace);
+			availableSpace.setUpperRightY(availableSpace.getUpperRightY() - 15f);
 		}
 	}
 
-	private float writeTitle(final PDPageContentStream content, final float vOffset) throws IOException {
+	private void writeTitle(final PDPageContentStream content, final PDRectangle availableSpace) throws IOException {
 		final int fontSize = PDUtil.FONT_SIZE * 2;
 		final PDFont font = PDUtil.FONT_BOLD;
 		final float titleWidth = font.getStringWidth(getTitle()) / 1000 * fontSize;
@@ -66,10 +70,11 @@ public class DefaultPage implements IPage {
 
 		content.beginText();
 		content.setFont(font, fontSize);
-		content.newLineAtOffset((page.getMediaBox().getWidth() - PDUtil.PAGE_MARGIN - titleWidth) / 2, vOffset - titleHeight);
+		content.newLineAtOffset((availableSpace.getWidth() - titleWidth) / 2, availableSpace.getUpperRightY() - titleHeight);
 		content.showText(getTitle());
 		content.endText();
-		return titleHeight;
+
+		availableSpace.setUpperRightY(availableSpace.getUpperRightY() - titleHeight);
 	}
 
 	/**
