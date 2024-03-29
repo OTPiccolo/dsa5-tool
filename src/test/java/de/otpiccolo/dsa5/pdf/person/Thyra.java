@@ -14,6 +14,8 @@ import de.otpiccolo.dsa5.data.vorteile.VorteilReader;
 import de.otpiccolo.dsa5.data.vorteile.VorteilWriter;
 import de.otpiccolo.dsa5.data.zauber.ZauberReader;
 import de.otpiccolo.dsa5.data.zauber.ZauberWriter;
+import de.otpiccolo.dsa5.pdf.data.image.ImageReader;
+import de.otpiccolo.dsa5.pdf.data.image.ImageWriter;
 import de.otpiccolo.dsa5.pdf.data.paragraph.ParagraphData;
 import de.otpiccolo.dsa5.pdf.data.paragraph.ParagraphWriter;
 import de.otpiccolo.dsa5.pdf.page.DefaultPage;
@@ -45,16 +47,28 @@ public class Thyra extends Person {
 		final IPage bioPage = getBioPage();
 		final IPage modPage = new ZauberModPage();
 
-		setPages(Stream.of(bioPage, vorteilNachteilPage, kampfPage, zauberPage1, zauberPage2, modPage));
+		final DefaultPage imagePage = new DefaultPage();
+		imagePage.getWriters().add(new ImageWriter(new ImageReader().readData("D:\\RP\\Bilder\\Thyra.jpg")));
+
+		setPages(Stream.of(bioPage, vorteilNachteilPage, kampfPage, zauberPage1, zauberPage2, modPage, imagePage));
 	}
 
 	private IPage getBioPage() {
-		final DefaultPage page = new DefaultPage("Bio");
+		final DefaultPage page = new DefaultPage("Sonstiges");
 
 		final ParagraphData father = new ParagraphData("Vater: Kjaskar. Tyrann. Tot (vermutlich).");
 		final ParagraphData mother = new ParagraphData("Mutter: Norhild. Unklar. Vermutlich bei Geburt gestorben, aber offen.");
-		final List<ParagraphData> family = Arrays.asList(father, mother);
+		final ParagraphData mentor = new ParagraphData("Lehrmeisterin: Runa. Hexe. Ehemaliger 'Reaper'. Erhält 'Kälteimmunität' von ihr.");
+		final List<ParagraphData> family = Arrays.asList(father, mother, mentor);
 		page.getWriters().add(new ParagraphWriter("Familie", family));
+
+		final ParagraphData village = new ParagraphData("Dorf Drakkarsheim auf der Insel Lassir.");
+		final List<ParagraphData> home = Arrays.asList(village);
+		page.getWriters().add(new ParagraphWriter("Heimat", home));
+
+		final ParagraphData sword = new ParagraphData("Kristallschlag: Magisches Schwert der Kälte. Ehemalige Klinge von Runa. Kann nur mit 'Kälteimmunität' geführt werden. Macht Frostschaden.");
+		final List<ParagraphData> items = Arrays.asList(sword);
+		page.getWriters().add(new ParagraphWriter("Gegenstände", items));
 
 		return page;
 	}

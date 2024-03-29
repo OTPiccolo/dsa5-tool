@@ -14,6 +14,8 @@ import de.otpiccolo.dsa5.data.vorteile.VorteilReader;
 import de.otpiccolo.dsa5.data.vorteile.VorteilWriter;
 import de.otpiccolo.dsa5.data.zeremonien.ZeremonieReader;
 import de.otpiccolo.dsa5.data.zeremonien.ZeremonieWriter;
+import de.otpiccolo.dsa5.pdf.data.image.ImageReader;
+import de.otpiccolo.dsa5.pdf.data.image.ImageWriter;
 import de.otpiccolo.dsa5.pdf.page.DefaultPage;
 import de.otpiccolo.dsa5.pdf.page.IPage;
 import de.otpiccolo.dsa5.pdf.page.predefined.SegenPage;
@@ -45,7 +47,10 @@ public class Lothar extends Person {
 		final IPage segenPage = new SegenPage();
 		final IPage modPage = new ZauberModPage();
 
-		setPages(Stream.of(vorteilNachteilPage, karmaPage, liturgiePage, zeremoniePage, segenPage, modPage));
+		final DefaultPage imagePage = new DefaultPage();
+		imagePage.getWriters().add(new ImageWriter(new ImageReader().readData("D:\\RP\\Bilder\\Lothar.png")));
+
+		setPages(Stream.of(vorteilNachteilPage, karmaPage, liturgiePage, zeremoniePage, segenPage, modPage, imagePage));
 	}
 
 }
