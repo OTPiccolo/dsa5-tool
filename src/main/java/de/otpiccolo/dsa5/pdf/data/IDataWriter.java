@@ -19,7 +19,7 @@ public interface IDataWriter {
 	 *         space that this data writer used, <code>false</code> otherwise.
 	 */
 	default boolean isDrawRectangle() {
-		return true;
+		return false;
 	}
 
 	/**
