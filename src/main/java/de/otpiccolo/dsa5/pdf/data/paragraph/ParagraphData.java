@@ -6,10 +6,6 @@ package de.otpiccolo.dsa5.pdf.data.paragraph;
  * @param paragraph
  *            The paragraph to write.
  */
-public record ParagraphData(String paragraph, String blub) {
-
-	public ParagraphData(final String paragraph) {
-		this(paragraph, "Yeah!");
-	}
+public record ParagraphData(String paragraph) {
 
 }
