@@ -19,7 +19,7 @@ public class ZauberModPage extends DefaultPage {
 		super("Zauber-/Predigt-Modifkationen");
 		final ParagraphData pg1 = new ParagraphData("Erzwingen: Kosten um eine Stufe erhöht, Zauberprobe um 1 erleichtert.");
 		final ParagraphData pg2 = new ParagraphData("Kosten senken: Kosten um eine Stufe gesenkt, Zauberprobe um 1 erschwert.");
-		final ParagraphData pg3 = new ParagraphData("Reichweite erhöhen Reichweite um eine Stufe erhöht, Zauberprobe um 1 erschwert.");
+		final ParagraphData pg3 = new ParagraphData("Reichweite erhöhen: Reichweite um eine Stufe erhöht, Zauberprobe um 1 erschwert.");
 		final ParagraphData pg4 = new ParagraphData("Zauberdauer erhöhen: Zauberdauer um eine Stufe erhöht, Zauberprobe um 1 erleichtert.");
 		final ParagraphData pg5 = new ParagraphData("Zauberdauer senken: Zauberdauer um eine Stufe gesenkt, Zauberprobe um 1 erschwert.");
 		final ParagraphData pg6 = new ParagraphData("Geste oder Formel weglassen: Zauberprobe um jeweils 2 erschwert.");
