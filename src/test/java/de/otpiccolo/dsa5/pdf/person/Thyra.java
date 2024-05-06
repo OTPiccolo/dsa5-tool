@@ -42,13 +42,15 @@ public class Thyra extends Person {
 		kampfPage.getWriters().add(fillWriter(KampfsonderfertigkeitWriter::new, KampfsonderfertigkeitReader::new, "Beidhändiger Kampf I-II", "Belastungsgewöhnung I-II", "Finte I-III", "Wuchtschlag I-III"));
 
 		final DefaultPage zauberPage1 = new DefaultPage("Zaubersprüche");
-		zauberPage1.getWriters().add(fillWriter(ZauberWriter::new, ZauberReader::new, "Balsam Salabunde", "Blick in die Gedanken", "Harmlose Gestalt", "Hexenknoten"));
-		zauberPage1.getWriters().add(fillWriter(ZaubererweiterungWriter::new, ZaubererweiterungReader::new, "Hexenknoten#Ausgenommen Freunde 1"));
+		zauberPage1.getWriters().add(fillWriter(ZauberWriter::new, ZauberReader::new, "Balsam Salabunde", "Blick in die Gedanken"));
+		zauberPage1.getWriters().add(fillWriter(ZaubererweiterungWriter::new, ZaubererweiterungReader::new, "Blick in die Gedanken#Sichtung 1"));
+		zauberPage1.getWriters().add(fillWriter(ZauberWriter::new, ZauberReader::new, "Harmlose Gestalt", "Hexenknoten"));
 		final DefaultPage zauberPage2 = new DefaultPage();
+		zauberPage2.getWriters().add(fillWriter(ZaubererweiterungWriter::new, ZaubererweiterungReader::new, "Hexenknoten#Ausgenommen Freunde 1"));
 		zauberPage2.getWriters().add(fillWriter(HexenfluchWriter::new, HexenfluchReader::new, "Hagelschlag"));
 		zauberPage2.getWriters().add(fillWriter(ZauberWriter::new, ZauberReader::new, "Katzenaugen", "Krötensprung", "Odem Arcanum", "Tiergedanken"));
 
-		final IPage bioPage = getBioPage();
+		final IPage bioPage = getOtherPage();
 		final IPage modPage = new ZauberModPage();
 		final IPage schipsPage = new SchicksalspunktePage();
 
@@ -58,7 +60,7 @@ public class Thyra extends Person {
 		setPages(Stream.of(bioPage, vorteilNachteilPage, kampfPage, zauberPage1, zauberPage2, bioPage, modPage, schipsPage, imagePage));
 	}
 
-	private IPage getBioPage() {
+	private IPage getOtherPage() {
 		final DefaultPage page = new DefaultPage("Sonstiges");
 
 		final ParagraphData father = new ParagraphData("Vater: Kjaskar. Tyrann. Tot (vermutlich).");
@@ -75,6 +77,10 @@ public class Thyra extends Person {
 		final ParagraphData sword = new ParagraphData("Kristallschlag: Magisches Schwert der Kälte. Ehemalige Klinge von Runa. Kann nur mit 'Kälteimmunität' geführt werden. Macht Frostschaden.");
 		final List<ParagraphData> items = Arrays.asList(sword);
 		page.getWriters().add(new ParagraphWriter("Gegenstände", items));
+
+		final ParagraphData erweiterung = new ParagraphData("Erweiterung Ausgetauscht: Optolith kann anscheinend \"Blick in die Gedanken # Sichtung 1\" nicht. Darum ist angzeigte Erweiterung \"#Kampfhandlung vorhersehen\" als Ersatz genommen.");
+		final List<ParagraphData> other = Arrays.asList(erweiterung);
+		page.getWriters().add(new ParagraphWriter("Sonstiges", other));
 
 		return page;
 	}
