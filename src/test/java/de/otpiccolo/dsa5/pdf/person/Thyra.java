@@ -80,8 +80,13 @@ public class Thyra extends Person {
 
 		final ParagraphData sword = new ParagraphData("Kristallschlag: Magisches Schwert der Kälte. Ehemalige Klinge von Runa. Kann nur mit 'Kälteimmunität' geführt werden. Macht Frostschaden.");
 		final ParagraphData amulett = new ParagraphData("Eulenamulett: Geschenk von Tiri. Ermöglicht einmal pro Tag für 10 Minuten, +4 Zähigkeit/Schaden/Körperkraft. Eine Aktion als Aktivierung.");
+		final ParagraphData poem1 = new ParagraphData("In Thorwals stürmischer, wilder See, Segelt mutig eine Maid, so kühn und frei. Mit Herz voll Güte, barmherzig wie Schnee, Bringt sie Hoffnung, wo Dunkelheit sei.");
+		final ParagraphData poem2 = new ParagraphData("An ihrer Seite, eine Schneeeule weiß, Ein stiller Wächter in der dunklen Nacht. Sie kämpfen gemeinsam, so sicher und leis, Gegen das Böse, mit mutiger Macht.");
+		final ParagraphData poem3 = new ParagraphData("Schwarzmagier und Piraten sind ihr Ziel, Mit Schwert und Magie, stets voll Gnade. Für eine Welt, die in Frieden erblüht, Dank der Thorwalerin und ihrer heldenhaften Pfade.");
 		final List<ParagraphData> items = Arrays.asList(sword, amulett);
 		page.getWriters().add(new ParagraphWriter("Gegenstände", items));
+		final List<ParagraphData> poem = Arrays.asList(poem1, poem2, poem3);
+		page.getWriters().add(new ParagraphWriter("Gedicht von Tiri", poem));
 
 		final ParagraphData heroOfZyklopenInsel = new ParagraphData("Held der Zyklopen-Insel: Hat die Stadt <Name> vor dem Untergang durch einen Angriff der Fischmenschen gerettet. Dafür wurde sie zur Heldin der Zyklopen-Inseln ernannt. Kriegt +1 auf alle sozialen Interaktionen mit Horasiern.");
 		final ParagraphData erweiterung = new ParagraphData("Erweiterung Ausgetauscht: Optolith kann anscheinend \"Blick in die Gedanken # Sichtung 1\" nicht. Darum ist angzeigte Erweiterung \"#Kampfhandlung vorhersehen\" als Ersatz genommen.");
