@@ -48,7 +48,11 @@ public class Thyra extends Person {
 		final DefaultPage zauberPage2 = new DefaultPage();
 		zauberPage2.getWriters().add(fillWriter(ZaubererweiterungWriter::new, ZaubererweiterungReader::new, "Hexenknoten#Ausgenommen Freunde 1"));
 		zauberPage2.getWriters().add(fillWriter(HexenfluchWriter::new, HexenfluchReader::new, "Hagelschlag"));
-		zauberPage2.getWriters().add(fillWriter(ZauberWriter::new, ZauberReader::new, "Katzenaugen", "Krötensprung", "Odem Arcanum", "Tiergedanken"));
+		zauberPage2.getWriters().add(fillWriter(ZauberWriter::new, ZauberReader::new, "Katzenaugen"));
+		zauberPage2.getWriters().add(fillWriter(ZaubererweiterungWriter::new, ZaubererweiterungReader::new, "Katzenaugen#Längere Aufrechterhaltung"));
+		zauberPage2.getWriters().add(fillWriter(ZauberWriter::new, ZauberReader::new, "Krötensprung", "Odem Arcanum"));
+		final DefaultPage zauberPage3 = new DefaultPage();
+		zauberPage3.getWriters().add(fillWriter(ZauberWriter::new, ZauberReader::new, "Tiergedanken"));
 
 		final IPage bioPage = getOtherPage();
 		final IPage modPage = new ZauberModPage();
@@ -57,7 +61,7 @@ public class Thyra extends Person {
 		final DefaultPage imagePage = new DefaultPage();
 		imagePage.getWriters().add(new ImageWriter(new ImageReader().readData("D:\\RP\\Bilder\\Thyra.jpg")));
 
-		setPages(Stream.of(bioPage, vorteilNachteilPage, kampfPage, zauberPage1, zauberPage2, bioPage, modPage, schipsPage, imagePage));
+		setPages(Stream.of(bioPage, vorteilNachteilPage, kampfPage, zauberPage1, zauberPage2, zauberPage3, bioPage, modPage, schipsPage, imagePage));
 	}
 
 	private IPage getOtherPage() {
@@ -75,11 +79,13 @@ public class Thyra extends Person {
 		page.getWriters().add(new ParagraphWriter("Heimat", home));
 
 		final ParagraphData sword = new ParagraphData("Kristallschlag: Magisches Schwert der Kälte. Ehemalige Klinge von Runa. Kann nur mit 'Kälteimmunität' geführt werden. Macht Frostschaden.");
-		final List<ParagraphData> items = Arrays.asList(sword);
+		final ParagraphData amulett = new ParagraphData("Eulenamulett: Geschenk von Tiri. Ermöglicht einmal pro Tag für 10 Minuten, +4 Zähigkeit/Schaden/Körperkraft. Eine Aktion als Aktivierung.");
+		final List<ParagraphData> items = Arrays.asList(sword, amulett);
 		page.getWriters().add(new ParagraphWriter("Gegenstände", items));
 
+		final ParagraphData heroOfZyklopenInsel = new ParagraphData("Held der Zyklopen-Insel: Hat die Stadt <Name> vor dem Untergang durch einen Angriff der Fischmenschen gerettet. Dafür wurde sie zur Heldin der Zyklopen-Inseln ernannt. Kriegt +1 auf alle sozialen Interaktionen mit Horasiern.");
 		final ParagraphData erweiterung = new ParagraphData("Erweiterung Ausgetauscht: Optolith kann anscheinend \"Blick in die Gedanken # Sichtung 1\" nicht. Darum ist angzeigte Erweiterung \"#Kampfhandlung vorhersehen\" als Ersatz genommen.");
-		final List<ParagraphData> other = Arrays.asList(erweiterung);
+		final List<ParagraphData> other = Arrays.asList(heroOfZyklopenInsel, erweiterung);
 		page.getWriters().add(new ParagraphWriter("Sonstiges", other));
 
 		return page;
