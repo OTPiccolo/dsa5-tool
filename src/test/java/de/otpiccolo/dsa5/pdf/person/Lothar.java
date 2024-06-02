@@ -21,6 +21,7 @@ import de.otpiccolo.dsa5.pdf.page.IPage;
 import de.otpiccolo.dsa5.pdf.page.predefined.SchicksalspunktePage;
 import de.otpiccolo.dsa5.pdf.page.predefined.SegenPage;
 import de.otpiccolo.dsa5.pdf.page.predefined.ZauberModPage;
+import de.otpiccolo.dsa5.pdf.page.predefined.geweihte.TraviaPage;
 
 /**
  * Information about Lothar.
@@ -45,6 +46,7 @@ public class Lothar extends Person {
 		final DefaultPage zeremoniePage = new DefaultPage("Zeremonien");
 		zeremoniePage.getWriters().add(fillWriter(ZeremonieWriter::new, ZeremonieReader::new, "Gänsegestalt", "Nahrungsreinigung", "Reisesegen", "Sättigung", "Segnung des Heims", "Speisung", "Weihe des Heims"));
 
+		final IPage traviaPage = new TraviaPage();
 		final IPage segenPage = new SegenPage();
 		final IPage modPage = new ZauberModPage();
 		final IPage schipsPage = new SchicksalspunktePage();
@@ -52,7 +54,7 @@ public class Lothar extends Person {
 		final DefaultPage imagePage = new DefaultPage();
 		imagePage.getWriters().add(new ImageWriter(new ImageReader().readData("D:\\RP\\Bilder\\Lothar.png")));
 
-		setPages(Stream.of(vorteilNachteilPage, karmaPage, liturgiePage, zeremoniePage, segenPage, modPage, schipsPage, imagePage));
+		setPages(Stream.of(vorteilNachteilPage, karmaPage, liturgiePage, zeremoniePage, traviaPage, segenPage, modPage, schipsPage, imagePage));
 	}
 
 }
