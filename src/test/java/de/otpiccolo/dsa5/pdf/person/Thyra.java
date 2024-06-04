@@ -54,14 +54,14 @@ public class Thyra extends Person {
 		final DefaultPage zauberPage3 = new DefaultPage();
 		zauberPage3.getWriters().add(fillWriter(ZauberWriter::new, ZauberReader::new, "Tiergedanken"));
 
-		final IPage bioPage = getOtherPage();
+		final IPage otherPage = getOtherPage();
 		final IPage modPage = new ZauberModPage();
 		final IPage schipsPage = new SchicksalspunktePage();
 
 		final DefaultPage imagePage = new DefaultPage();
 		imagePage.getWriters().add(new ImageWriter(new ImageReader().readData("D:\\RP\\Bilder\\Thyra.jpg")));
 
-		setPages(Stream.of(bioPage, vorteilNachteilPage, kampfPage, zauberPage1, zauberPage2, zauberPage3, bioPage, modPage, schipsPage, imagePage));
+		setPages(Stream.of(vorteilNachteilPage, kampfPage, zauberPage1, zauberPage2, zauberPage3, otherPage, modPage, schipsPage, imagePage));
 	}
 
 	private IPage getOtherPage() {
