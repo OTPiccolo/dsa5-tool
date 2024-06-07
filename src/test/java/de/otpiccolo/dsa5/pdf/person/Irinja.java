@@ -1,6 +1,7 @@
 package de.otpiccolo.dsa5.pdf.person;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -32,13 +33,14 @@ public class Irinja extends Person {
 	public Irinja() {
 		final DefaultPage vorteilNachteilPage = new DefaultPage("Vorteile & Nachteile");
 		vorteilNachteilPage.getWriters().add(fillWriter(VorteilWriter::new, VorteilReader::new, "Begabung", "Beidhändig", "Nichtschläfer (*)", "Schlangenmensch", "Waffenbegabung", "Zauberer"));
-		vorteilNachteilPage.getWriters().add(fillWriter(NachteilWriter::new, NachteilReader::new, "Körperliche Auffälligkeit", "Niedrige Zähigkeit"));
+		vorteilNachteilPage.getWriters().add(new ParagraphWriter("Schlangenzunge", Collections.singleton(new ParagraphData("Geruchssinn auf 10m Meter. Gespaltene Zunge wie bei einer Schlange."))));
+		vorteilNachteilPage.getWriters().add(fillWriter(NachteilWriter::new, NachteilReader::new, "Niedrige Zähigkeit"));
 
 		final DefaultPage kampfPage = new DefaultPage("Kampfsonderfertigkeiten");
 		kampfPage.getWriters().add(fillWriter(KampfsonderfertigkeitWriter::new, KampfsonderfertigkeitReader::new, "Beidhändiger Kampf I-II", "Finte I-III", "Präziser Schuss/Wurf I-III", "Präziser Stich I-III", "Schnellziehen", "Unterlaufen I-II", "Verbessertes Ausweichen I-III"));
 
 		final DefaultPage zauberPage = new DefaultPage("Zaubersprüche");
-		zauberPage.getWriters().add(fillWriter(ZauberWriter::new, ZauberReader::new, "Axxeleratus", "Chamaelioni", "Foramen"));
+		zauberPage.getWriters().add(fillWriter(ZauberWriter::new, ZauberReader::new, "Axxeleratus", "Chamaelioni", "Penetrizzel"));
 
 		final IPage otherPage = getOtherPage();
 		final IPage modPage = new ZauberModPage();
@@ -53,14 +55,15 @@ public class Irinja extends Person {
 	private IPage getOtherPage() {
 		final DefaultPage page = new DefaultPage("Sonstiges");
 
-		final ParagraphData father = new ParagraphData("Vater: Andrej Itolojeff.");
-		final ParagraphData circus = new ParagraphData("Zirkus: Wandernder Hut, geleitet von der Großartigen und Mächtigen Trixxxxxxie!");
+		final ParagraphData father = new ParagraphData("Vater: Andrej Rastislav.");
+		final ParagraphData circus = new ParagraphData("Zirkus: Wandernder Hut, geleitet von der Großartigen und Mächtigen Trrrrrrrixie!");
 		final List<ParagraphData> family = Arrays.asList(father, circus);
 		page.getWriters().add(new ParagraphWriter("Familie", family));
 
 		final ParagraphData boneDagger = new ParagraphData("Knochendolch: +4 Schaden auf Meucheln.");
 		final ParagraphData discDagger = new ParagraphData("Scheibendolch: Gegner mit RK >= 4 erhalten -2 auf RK und +1 Schaden. Kein Kreuzblock möglich.");
-		final List<ParagraphData> weapons = Arrays.asList(boneDagger, discDagger);
+		final ParagraphData poisonSpit = new ParagraphData("Giftspucke: Wird regeltechnisch wie 'Wurfdolch' gehandhabt. 1/Tag, 1W6+5 Schaden + Ätzend (W3/KR) ");
+		final List<ParagraphData> weapons = Arrays.asList(boneDagger, discDagger, poisonSpit);
 		page.getWriters().add(new ParagraphWriter("Waffen", weapons));
 
 		final ParagraphData butteflyAmulet = new ParagraphData("Schmetterlings-Amulett: Kann 1/Tag Saturias Herrlichkeit zaubern als QS1 für 3 Stunden.");
