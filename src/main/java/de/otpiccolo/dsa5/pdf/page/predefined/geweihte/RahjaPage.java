@@ -17,6 +17,7 @@ public class RahjaPage extends GeweihtePage {
 		super("Rahja");
 		addMoralkodex();
 		addTradition("Rahjakirche");
+		addMirakel();
 	}
 
 	private void addMoralkodex() {

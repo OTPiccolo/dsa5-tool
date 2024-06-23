@@ -17,6 +17,7 @@ public class HesindePage extends GeweihtePage {
 		super("Hesinde");
 		addMoralkodex();
 		addTradition("Hesindekirche");
+		addMirakel();
 	}
 
 	private void addMoralkodex() {

@@ -17,6 +17,7 @@ public class TraviaPage extends GeweihtePage {
 		super("Travia");
 		addMoralkodex();
 		addTradition("Traviakirche");
+		addMirakel();
 	}
 
 	private void addMoralkodex() {

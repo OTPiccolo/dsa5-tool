@@ -17,6 +17,7 @@ public class BoronPage extends GeweihtePage {
 		super("Boron");
 		addMoralkodex();
 		addTradition("Boronkirche");
+		addMirakel();
 	}
 
 	private void addMoralkodex() {

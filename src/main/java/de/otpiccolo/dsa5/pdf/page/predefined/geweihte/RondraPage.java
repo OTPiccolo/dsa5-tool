@@ -17,6 +17,7 @@ public class RondraPage extends GeweihtePage {
 		super("Rondra");
 		addMoralkodex();
 		addTradition("Rondrakirche");
+		addMirakel();
 	}
 
 	private void addMoralkodex() {

@@ -17,6 +17,7 @@ public class EfferdPage extends GeweihtePage {
 		super("Efferd");
 		addMoralkodex();
 		addTradition("Efferdkirche");
+		addMirakel();
 	}
 
 	private void addMoralkodex() {

@@ -17,6 +17,7 @@ public class PraiosPage extends GeweihtePage {
 		super("Praios");
 		addMoralkodex();
 		addTradition("Praioskirche");
+		addMirakel();
 	}
 
 	private void addMoralkodex() {

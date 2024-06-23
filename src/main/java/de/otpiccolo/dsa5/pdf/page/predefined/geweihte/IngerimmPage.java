@@ -17,6 +17,7 @@ public class IngerimmPage extends GeweihtePage {
 		super("Ingerimm");
 		addMoralkodex();
 		addTradition("Ingerimmkirche");
+		addMirakel();
 	}
 
 	private void addMoralkodex() {

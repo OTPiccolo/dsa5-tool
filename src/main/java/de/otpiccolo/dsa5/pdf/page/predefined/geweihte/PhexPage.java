@@ -17,6 +17,7 @@ public class PhexPage extends GeweihtePage {
 		super("Phex");
 		addMoralkodex();
 		addTradition("Phexkirche");
+		addMirakel();
 	}
 
 	private void addMoralkodex() {

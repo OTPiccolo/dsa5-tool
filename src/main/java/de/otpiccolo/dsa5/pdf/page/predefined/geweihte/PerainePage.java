@@ -17,6 +17,7 @@ public class PerainePage extends GeweihtePage {
 		super("Peraine");
 		addMoralkodex();
 		addTradition("Perainekirche");
+		addMirakel();
 	}
 
 	private void addMoralkodex() {

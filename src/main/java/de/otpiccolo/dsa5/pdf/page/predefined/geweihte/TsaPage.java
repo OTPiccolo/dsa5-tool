@@ -17,6 +17,7 @@ public class TsaPage extends GeweihtePage {
 		super("Tsa");
 		addMoralkodex();
 		addTradition("Tsakirche");
+		addMirakel();
 	}
 
 	private void addMoralkodex() {

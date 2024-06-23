@@ -17,6 +17,7 @@ public class FirunPage extends GeweihtePage {
 		super("Firun");
 		addMoralkodex();
 		addTradition("Firunkirche");
+		addMirakel();
 	}
 
 	private void addMoralkodex() {
