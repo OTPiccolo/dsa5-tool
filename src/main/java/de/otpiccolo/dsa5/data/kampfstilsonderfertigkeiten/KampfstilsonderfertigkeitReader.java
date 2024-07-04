@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import de.otpiccolo.dsa5.ulisses.AUlissesReader;
 
@@ -29,7 +30,7 @@ public class KampfstilsonderfertigkeitReader extends AUlissesReader<Kampfstilson
 		} else {
 			try {
 				final Document doc = loadDocument(pageName);
-				rule = getData(doc, "Regel");
+				rule = getRule(doc);
 			} catch (final IOException e) {
 				getLog().error("Error reading Kampfstilsonderfertigkeit \"" + name + "\". Error message: " + e.getMessage(), e);
 				rule = e.getMessage();
@@ -63,11 +64,32 @@ public class KampfstilsonderfertigkeitReader extends AUlissesReader<Kampfstilson
 		return map;
 	}
 
-	private String getData(final Element root, final String name) {
-		final String key = name + ": ";
-		for (final Element element : root.selectXpath("//div[@class='ce_text block']/p")) {
-			if (element.text().startsWith(name)) {
-				return element.text().substring(key.length());
+	private String getRule(final Element root) {
+		final Elements elements = root.selectXpath("(//div[@class='ce_text block'])[1]/p");
+		switch (elements.size()) {
+		case 0:
+			return "<Not Found>";
+
+		case 1:
+			return getRuleFromSingleElement(elements.first());
+
+		default:
+			return getRuleFromMultipleElements(elements);
+		}
+	}
+
+	private String getRuleFromSingleElement(final Element ruleElement) {
+		// Rule value is in first child node. It is not wrapped in any other
+		// HTML entity.
+		return ruleElement.childNode(1).toString().trim();
+	}
+
+	private String getRuleFromMultipleElements(final Elements elements) {
+		final String ruleKey = "Regel:";
+		for (final Element element : elements) {
+			final String text = element.text();
+			if (text.startsWith(ruleKey)) {
+				return text.substring(ruleKey.length()).trim();
 			}
 		}
 		return "<Not Found>";
