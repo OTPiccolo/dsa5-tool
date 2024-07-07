@@ -6,6 +6,8 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import de.otpiccolo.dsa5.data.elixiere.ElixierData;
+import de.otpiccolo.dsa5.data.elixiere.ElixierReader;
 import de.otpiccolo.dsa5.data.hexenfluch.HexenfluchData;
 import de.otpiccolo.dsa5.data.hexenfluch.HexenfluchReader;
 import de.otpiccolo.dsa5.data.kampfsonderfertigkeiten.KampfsonderfertigkeitData;
@@ -39,6 +41,22 @@ import de.otpiccolo.dsa5.data.zeremonien.ZeremonieReader;
  */
 @SuppressWarnings("javadoc")
 public class UlissesDataReaderTest {
+
+	@Test
+	public void testElexier() {
+		final var reader = new ElixierReader();
+		final var data = reader.readData("Kaltes Licht");
+
+		final List<String> qs = new ArrayList<String>(6);
+		qs.add("Das Kalte Licht besitzt den Lichtradius einer Kerze für 0,5 Stunden.");
+		qs.add("Das Kalte Licht besitzt den Lichtradius einer Kerze für 1 Stunde.");
+		qs.add("Das Kalte Licht besitzt den Lichtradius einer Kerze für 1,5 Stunden.");
+		qs.add("Das Kalte Licht besitzt den Lichtradius einer Fackel für 2 Stunden.");
+		qs.add("Das Kalte Licht besitzt den Lichtradius einer Fackel für 2,5 Stunden.");
+		qs.add("Das Kalte Licht besitzt den Lichtradius einer Fackel für 3 Stunden.");
+		final var expected = new ElixierData("Kaltes Licht", 22, qs);
+		Assertions.assertEquals(expected, data);
+	}
 
 	@Test
 	public void testHexenfluch() {

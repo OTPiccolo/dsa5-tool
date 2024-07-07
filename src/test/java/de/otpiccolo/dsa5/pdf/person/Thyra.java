@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
+import de.otpiccolo.dsa5.data.elixiere.ElixierReader;
+import de.otpiccolo.dsa5.data.elixiere.ElixierWriter;
 import de.otpiccolo.dsa5.data.hexenfluch.HexenfluchReader;
 import de.otpiccolo.dsa5.data.hexenfluch.HexenfluchWriter;
 import de.otpiccolo.dsa5.data.kampfsonderfertigkeiten.KampfsonderfertigkeitReader;
@@ -54,6 +56,9 @@ public class Thyra extends Person {
 		final DefaultPage zauberPage3 = new DefaultPage();
 		zauberPage3.getWriters().add(fillWriter(ZauberWriter::new, ZauberReader::new, "Tiergedanken"));
 
+		final DefaultPage itemPage = new DefaultPage("Gegenstände");
+		itemPage.getWriters().add(fillWriter(ElixierWriter::new, ElixierReader::new, "Berserkerelixier", "Heiltrank", "Zaubertrank"));
+
 		final IPage otherPage = getOtherPage();
 		final IPage modPage = new ZauberModPage();
 		final IPage schipsPage = new SchicksalspunktePage();
@@ -61,7 +66,7 @@ public class Thyra extends Person {
 		final DefaultPage imagePage = new DefaultPage();
 		imagePage.getWriters().add(new ImageWriter(new ImageReader().readData("D:\\RP\\Bilder\\Thyra.jpg")));
 
-		setPages(Stream.of(vorteilNachteilPage, kampfPage, zauberPage1, zauberPage2, zauberPage3, otherPage, modPage, schipsPage, imagePage));
+		setPages(Stream.of(vorteilNachteilPage, kampfPage, zauberPage1, zauberPage2, zauberPage3, itemPage, otherPage, modPage, schipsPage, imagePage));
 	}
 
 	private IPage getOtherPage() {
