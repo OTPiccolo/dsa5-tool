@@ -32,6 +32,8 @@ import de.otpiccolo.dsa5.data.zauber.ZauberData;
 import de.otpiccolo.dsa5.data.zauber.ZauberReader;
 import de.otpiccolo.dsa5.data.zaubererweiterung.ZaubererweiterungData;
 import de.otpiccolo.dsa5.data.zaubererweiterung.ZaubererweiterungReader;
+import de.otpiccolo.dsa5.data.zeremonialgegenstandssonderfertigkeiten.ZeremonialgegenstandssonderfertigkeitData;
+import de.otpiccolo.dsa5.data.zeremonialgegenstandssonderfertigkeiten.ZeremonialgegenstandssonderfertigkeitReader;
 import de.otpiccolo.dsa5.data.zeremonien.ZeremonieData;
 import de.otpiccolo.dsa5.data.zeremonien.ZeremonieReader;
 
@@ -176,6 +178,15 @@ public class UlissesDataReaderTest {
 		final var data = reader.readData("Balsam Salabunde#Zielkategorie Lebewesen");
 
 		final var expected = new ZaubererweiterungData("Zielkategorie Lebewesen", "Balsam Salabunde", "Der Zauber umfasst auch die Zielkategorie Lebewesen.");
+		Assertions.assertEquals(expected, data);
+	}
+
+	@Test
+	public void testZeremonialgegenstandssonderfertigkeit() {
+		final var reader = new ZeremonialgegenstandssonderfertigkeitReader();
+		final var data = reader.readData("Angsteinflößendes Tier");
+
+		final var expected = new ZeremonialgegenstandssonderfertigkeitData("Angsteinflößendes Tier", "Levthankult", "Der Levthanpriester kann auf bis zu 16 Schritt ein Ziel benennen. Dieses erleidet 1 Stufe Furcht. Nur Kulturschaffende können davon betroffen sein. Der Einsatz dieser Fähigkeit kostet 1 Aktion und verursacht 1 Stufe Trance.");
 		Assertions.assertEquals(expected, data);
 	}
 
