@@ -20,6 +20,8 @@ import de.otpiccolo.dsa5.data.karmaletradition.KarmaleTraditionData;
 import de.otpiccolo.dsa5.data.karmaletradition.KarmaleTraditionReader;
 import de.otpiccolo.dsa5.data.liturgien.LiturgieData;
 import de.otpiccolo.dsa5.data.liturgien.LiturgieReader;
+import de.otpiccolo.dsa5.data.liturgiestil.LiturgiestilData;
+import de.otpiccolo.dsa5.data.liturgiestil.LiturgiestilReader;
 import de.otpiccolo.dsa5.data.nachteile.NachteilData;
 import de.otpiccolo.dsa5.data.nachteile.NachteilReader;
 import de.otpiccolo.dsa5.data.predigt.PredigtData;
@@ -126,6 +128,15 @@ public class UlissesDataReaderTest {
 		final var data = reader.readData("Bärenhaut");
 
 		final var expected = new LiturgieData("Bärenhaut", "4 Aktion(en)", "8 KaP (Kosten sind nicht modifizierbar)", "Der Geweihte erhält einen natürlichen RS von 2, der mit RS aus anderen Quellen kombiniert werden kann.");
+		Assertions.assertEquals(expected, data);
+	}
+
+	@Test
+	public void testLiturgiestil() {
+		final var reader = new LiturgiestilReader();
+		final var data = reader.readData("Anhänger des guten Kampfes");
+
+		final var expected = new LiturgiestilData("Anhänger des guten Kampfes", "Gegen Dämonen und Ungeheuer verfügen Anhänger des guten Kampfes über +1 RS. Dieser RS ist mit anderem RS kombinierbar, wenn dieser auch gegen das Ungeheuer schützt");
 		Assertions.assertEquals(expected, data);
 	}
 
