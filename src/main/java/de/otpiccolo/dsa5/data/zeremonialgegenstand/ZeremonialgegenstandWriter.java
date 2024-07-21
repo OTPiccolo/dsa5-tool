@@ -33,9 +33,9 @@ public class ZeremonialgegenstandWriter extends ADataWriter {
 	public PDRectangle writeData(final PDDocument doc, final PDPage page, final PDRectangle availableSpace) throws IOException {
 		PDRectangle space = PDUtil.copyRectangle(availableSpace);
 		try (PDPageContentStream content = new PDPageContentStream(doc, page, AppendMode.APPEND, true, true)) {
-			for (final ZeremonialgegenstandData kampfstilsonderfertigkeit : data) {
-				space = writeTitle(kampfstilsonderfertigkeit.name(), content, space, 5f);
-				space = writeParagraph(kampfstilsonderfertigkeit.rule(), content, space, 15f);
+			for (final ZeremonialgegenstandData zeremonialgegenstand : data) {
+				space = writeTitle(zeremonialgegenstand.name(), content, space, 5f);
+				space = writeParagraph(zeremonialgegenstand.rule(), content, space, 15f);
 			}
 			// Remove last spacing.
 			space.setUpperRightY(space.getUpperRightY() + 15f);
