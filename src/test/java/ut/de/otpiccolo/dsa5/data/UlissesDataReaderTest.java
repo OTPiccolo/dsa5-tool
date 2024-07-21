@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import de.otpiccolo.dsa5.data.elixiere.ElixierData;
 import de.otpiccolo.dsa5.data.elixiere.ElixierReader;
+import de.otpiccolo.dsa5.data.erweiteterliturgiestil.ErweiterterLiturgiestilData;
+import de.otpiccolo.dsa5.data.erweiteterliturgiestil.ErweiterterLiturgiestilReader;
 import de.otpiccolo.dsa5.data.hexenfluch.HexenfluchData;
 import de.otpiccolo.dsa5.data.hexenfluch.HexenfluchReader;
 import de.otpiccolo.dsa5.data.kampfsonderfertigkeiten.KampfsonderfertigkeitData;
@@ -61,6 +63,15 @@ public class UlissesDataReaderTest {
 		qs.add("Das Kalte Licht besitzt den Lichtradius einer Fackel für 2,5 Stunden.");
 		qs.add("Das Kalte Licht besitzt den Lichtradius einer Fackel für 3 Stunden.");
 		final var expected = new ElixierData("Kaltes Licht", 22, qs);
+		Assertions.assertEquals(expected, data);
+	}
+
+	@Test
+	public void testErweiterterLiturgiestil() {
+		final var reader = new ErweiterterLiturgiestilReader();
+		final var data = reader.readData("Altes Zwergenwissen");
+
+		final var expected = new ErweiterterLiturgiestilData("Altes Zwergenwissen", "Setzt der Geweihte bei einem wohlgefälligen Talent ein Mirakel ein, erhält er dafür zusätzlich eine Erleichterung von +1.", "Hüter der Tradition");
 		Assertions.assertEquals(expected, data);
 	}
 
