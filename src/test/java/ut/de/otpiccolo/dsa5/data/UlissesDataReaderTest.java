@@ -14,6 +14,8 @@ import de.otpiccolo.dsa5.data.kampfsonderfertigkeiten.KampfsonderfertigkeitData;
 import de.otpiccolo.dsa5.data.kampfsonderfertigkeiten.KampfsonderfertigkeitReader;
 import de.otpiccolo.dsa5.data.kampfstilsonderfertigkeiten.KampfstilsonderfertigkeitData;
 import de.otpiccolo.dsa5.data.kampfstilsonderfertigkeiten.KampfstilsonderfertigkeitReader;
+import de.otpiccolo.dsa5.data.karmalesonderfertigkeiten.KarmaleSonderfertigkeitData;
+import de.otpiccolo.dsa5.data.karmalesonderfertigkeiten.KarmaleSonderfertigkeitReader;
 import de.otpiccolo.dsa5.data.karmaletradition.KarmaleTraditionData;
 import de.otpiccolo.dsa5.data.karmaletradition.KarmaleTraditionReader;
 import de.otpiccolo.dsa5.data.liturgien.LiturgieData;
@@ -93,6 +95,15 @@ public class UlissesDataReaderTest {
 		final var data = reader.readData("Dajin-Stil");
 
 		final var expected = new KampfstilsonderfertigkeitData("Dajin-Stil", "Sollte der Dajin-Buskur auf seiner Position verharren (sprich: er hat keine Aktion oder freie Aktion in dieser KR für Bewegung aufgewendet) und greift er den Feind an, der ihn in dieser KR zuerst angegriffen hat, so erhält er gegen diesen einen Bonus von +1 AT und +1 TP.");
+		Assertions.assertEquals(expected, data);
+	}
+
+	@Test
+	public void testKarmaleSonderfertigkeit() {
+		final var reader = new KarmaleSonderfertigkeitReader();
+		final var data = reader.readData("Abgeschwächte Liturgie ");
+
+		final var expected = new KarmaleSonderfertigkeitData("Abgeschwächte Liturgie ", "Der Held kann nach dem Ablegen einer Liturgieprobe QS zurückbehalten und muss nicht alle erzielten QS einsetzen. Hat er beispielsweise 3 QS erreicht, kann er sich auch dafür entscheiden, dass die Liturgie nur mit einer QS von 2 oder 1 wirken soll.");
 		Assertions.assertEquals(expected, data);
 	}
 
