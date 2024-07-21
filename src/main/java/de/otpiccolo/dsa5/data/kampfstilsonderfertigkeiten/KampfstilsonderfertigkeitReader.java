@@ -26,7 +26,7 @@ public class KampfstilsonderfertigkeitReader extends AUlissesReader<Kampfstilson
 		final String pageName = getPage(name);
 		if (pageName == null) {
 			getLog().warn("Could not find Kampfstilsonderfertigkeit with name \"{}\".", name);
-			rule = "<Unknown Kampfsonderfertigkeit>";
+			rule = "<Unknown Kampfstilsonderfertigkeit>";
 		} else {
 			try {
 				final Document doc = loadDocument(pageName);
@@ -42,12 +42,12 @@ public class KampfstilsonderfertigkeitReader extends AUlissesReader<Kampfstilson
 
 	private String getPage(final String kampfsonderfertigkeitName) {
 		if (pages == null) {
-			pages = readKampfsonderfertigkeiten();
+			pages = readKampfstilsonderfertigkeiten();
 		}
 		return pages.get(kampfsonderfertigkeitName);
 	}
 
-	private Map<String, String> readKampfsonderfertigkeiten() {
+	private Map<String, String> readKampfstilsonderfertigkeiten() {
 		getLog().info("Initializinge Kampfstilsonderfertigkeit data.");
 		Document doc;
 		try {
