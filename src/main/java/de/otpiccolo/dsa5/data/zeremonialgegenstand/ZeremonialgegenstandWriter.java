@@ -13,17 +13,17 @@ import de.otpiccolo.dsa5.pdf.data.ADataWriter;
 import de.otpiccolo.pdf.PDUtil;
 
 /**
- * Class to write Kampfstilsonderfertigkeit to a document.
+ * Class to write Zermonialgegenstandssonderfertigkeit to a document.
  */
 public class ZeremonialgegenstandWriter extends ADataWriter {
 
 	private final Collection<ZeremonialgegenstandData> data;
 
 	/**
-	 * A collection containing Kampfstilsonderfertigkeit.
+	 * A collection containing Zermonialgegenstandssonderfertigkeiten.
 	 *
 	 * @param data
-	 *            The Kampfstilsonderfertigkeit.
+	 *            The Zermonialgegenstandssonderfertigkeiten.
 	 */
 	public ZeremonialgegenstandWriter(final Collection<ZeremonialgegenstandData> data) {
 		this.data = data;
@@ -37,7 +37,7 @@ public class ZeremonialgegenstandWriter extends ADataWriter {
 				space = writeTitle(kampfstilsonderfertigkeit.name(), content, space, 5f);
 				space = writeParagraph(kampfstilsonderfertigkeit.rule(), content, space, 15f);
 			}
-			// Remove last Kampfstilsonderfertigkeit spacing.
+			// Remove last spacing.
 			space.setUpperRightY(space.getUpperRightY() + 15f);
 			drawRectangle(content, space, availableSpace);
 		}
