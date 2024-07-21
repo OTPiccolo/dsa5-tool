@@ -1,4 +1,4 @@
-package de.otpiccolo.dsa5.data.zeremonialgegenstandssonderfertigkeiten;
+package de.otpiccolo.dsa5.data.zeremonialgegenstand;
 
 import java.io.IOException;
 
@@ -10,10 +10,10 @@ import de.otpiccolo.dsa5.ulisses.AUlissesReader;
  * Class to read a Zeremonialgegenstandssonderfertigkeit from an Internet
  * source.
  */
-public class ZeremonialgegenstandssonderfertigkeitReader extends AUlissesReader<ZeremonialgegenstandssonderfertigkeitData> {
+public class ZeremonialgegenstandReader extends AUlissesReader<ZeremonialgegenstandData> {
 
 	@Override
-	public ZeremonialgegenstandssonderfertigkeitData readData(final String name) {
+	public ZeremonialgegenstandData readData(final String name) {
 		getLog().info("Getting data for \"{}\" Zeremonialgegenstandssonderfertigkeit.", name);
 		String rule;
 		String tradition;
@@ -28,7 +28,7 @@ public class ZeremonialgegenstandssonderfertigkeitReader extends AUlissesReader<
 			rule = e.getMessage();
 		}
 
-		return new ZeremonialgegenstandssonderfertigkeitData(name, tradition, rule);
+		return new ZeremonialgegenstandData(name, tradition, rule);
 	}
 
 	private String getPage(final String sonderfertigkeitName) {

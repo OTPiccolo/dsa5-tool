@@ -1,4 +1,4 @@
-package de.otpiccolo.dsa5.data.zeremonialgegenstandssonderfertigkeiten;
+package de.otpiccolo.dsa5.data.zeremonialgegenstand;
 
 /**
  * A record of Zeremonialgegenstandssonderfertigkeit data.
@@ -10,6 +10,6 @@ package de.otpiccolo.dsa5.data.zeremonialgegenstandssonderfertigkeiten;
  * @param rule
  *            The rule of the Sonderfertigkeit.
  */
-public record ZeremonialgegenstandssonderfertigkeitData(String name, String tradition, String rule) {
+public record ZeremonialgegenstandData(String name, String tradition, String rule) {
 
 }

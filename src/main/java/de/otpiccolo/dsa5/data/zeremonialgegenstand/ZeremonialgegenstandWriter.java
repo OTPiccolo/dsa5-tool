@@ -1,4 +1,4 @@
-package de.otpiccolo.dsa5.data.zeremonialgegenstandssonderfertigkeiten;
+package de.otpiccolo.dsa5.data.zeremonialgegenstand;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -15,9 +15,9 @@ import de.otpiccolo.pdf.PDUtil;
 /**
  * Class to write Kampfstilsonderfertigkeit to a document.
  */
-public class ZeremonialgegenstandssonderfertigkeitWriter extends ADataWriter {
+public class ZeremonialgegenstandWriter extends ADataWriter {
 
-	private final Collection<ZeremonialgegenstandssonderfertigkeitData> data;
+	private final Collection<ZeremonialgegenstandData> data;
 
 	/**
 	 * A collection containing Kampfstilsonderfertigkeit.
@@ -25,7 +25,7 @@ public class ZeremonialgegenstandssonderfertigkeitWriter extends ADataWriter {
 	 * @param data
 	 *            The Kampfstilsonderfertigkeit.
 	 */
-	public ZeremonialgegenstandssonderfertigkeitWriter(final Collection<ZeremonialgegenstandssonderfertigkeitData> data) {
+	public ZeremonialgegenstandWriter(final Collection<ZeremonialgegenstandData> data) {
 		this.data = data;
 	}
 
@@ -33,7 +33,7 @@ public class ZeremonialgegenstandssonderfertigkeitWriter extends ADataWriter {
 	public PDRectangle writeData(final PDDocument doc, final PDPage page, final PDRectangle availableSpace) throws IOException {
 		PDRectangle space = PDUtil.copyRectangle(availableSpace);
 		try (PDPageContentStream content = new PDPageContentStream(doc, page, AppendMode.APPEND, true, true)) {
-			for (final ZeremonialgegenstandssonderfertigkeitData kampfstilsonderfertigkeit : data) {
+			for (final ZeremonialgegenstandData kampfstilsonderfertigkeit : data) {
 				space = writeTitle(kampfstilsonderfertigkeit.name(), content, space, 5f);
 				space = writeParagraph(kampfstilsonderfertigkeit.rule(), content, space, 15f);
 			}
