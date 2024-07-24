@@ -70,7 +70,8 @@ public class Irinja extends Person {
 
 		final ParagraphData butteflyAmulet = new ParagraphData("Schmetterlings-Amulett: Kann 1/Tag Saturias Herrlichkeit zaubern als QS1 für 3 Stunden.");
 		final ParagraphData baronRing = new ParagraphData("Ring des Barons: Erhält den Vorteil 'Nichtschläfer', aber auch -1 LP Regeneration. Untote ignorieren den Träger, solange der Träger nicht aktiv gegen die Untoten vorgeht. Beim Abziehen des Rings gibt es 3W6 Schaden.");
-		final List<ParagraphData> items = Arrays.asList(butteflyAmulet, baronRing);
+		final ParagraphData peraineSymbol = new ParagraphData("Peraine Symbol: Erhält +1 LP/AsP pro Rast. Einmal pro Tag als freie Aktion kann eine Stufe Betäubung/Paralyse/Schmerz entfernt werden.");
+		final List<ParagraphData> items = Arrays.asList(butteflyAmulet, baronRing, peraineSymbol);
 		page.getWriters().add(new ParagraphWriter("Gegenstände", items));
 
 		return page;
