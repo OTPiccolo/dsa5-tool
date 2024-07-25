@@ -2,6 +2,8 @@ package de.otpiccolo.dsa5.pdf.person;
 
 import java.util.stream.Stream;
 
+import de.otpiccolo.dsa5.data.elfenlied.ElfenliedReader;
+import de.otpiccolo.dsa5.data.elfenlied.ElfenliedWriter;
 import de.otpiccolo.dsa5.data.elixiere.ElixierReader;
 import de.otpiccolo.dsa5.data.elixiere.ElixierWriter;
 import de.otpiccolo.dsa5.data.kampfsonderfertigkeiten.KampfsonderfertigkeitReader;
@@ -45,6 +47,9 @@ public class Adariel extends Person {
 		final DefaultPage zaubertrickPage = new DefaultPage("Zaubertricks");
 		zaubertrickPage.getWriters().add(fillWriter(ZaubertrickWriter::new, ZaubertrickReader::new, "Blütenduft", "Elfenhaar", "Putziges Tierchen", "Schmutzabweisend"));
 
+		final DefaultPage elfenliedPage = new DefaultPage("Elfenlieder");
+		elfenliedPage.getWriters().add(fillWriter(ElfenliedWriter::new, ElfenliedReader::new, "Friedenslied", "Lied der Reinheit"));
+
 		final DefaultPage itemPage = new DefaultPage("Gegenstände");
 		itemPage.getWriters().add(fillWriter(ElixierWriter::new, ElixierReader::new, "Heiltrank", "Zaubertrank"));
 
@@ -54,7 +59,7 @@ public class Adariel extends Person {
 		final DefaultPage imagePage = new DefaultPage();
 		imagePage.getWriters().add(new ImageWriter(new ImageReader().readData("D:\\RP\\Bilder\\Adariel Abendfreundin.png")));
 
-		setPages(Stream.of(vorteilNachteilPage, kampfPage, zauberPage1, zauberPage2, zaubertrickPage, itemPage, modPage, schipsPage, imagePage));
+		setPages(Stream.of(vorteilNachteilPage, kampfPage, zauberPage1, zauberPage2, zaubertrickPage, elfenliedPage, itemPage, modPage, schipsPage, imagePage));
 	}
 
 }
