@@ -6,6 +6,8 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import de.otpiccolo.dsa5.data.elfenlied.ElfenliedData;
+import de.otpiccolo.dsa5.data.elfenlied.ElfenliedReader;
 import de.otpiccolo.dsa5.data.elixiere.ElixierData;
 import de.otpiccolo.dsa5.data.elixiere.ElixierReader;
 import de.otpiccolo.dsa5.data.erweiteterliturgiestil.ErweiterterLiturgiestilData;
@@ -38,6 +40,8 @@ import de.otpiccolo.dsa5.data.zauber.ZauberData;
 import de.otpiccolo.dsa5.data.zauber.ZauberReader;
 import de.otpiccolo.dsa5.data.zaubererweiterung.ZaubererweiterungData;
 import de.otpiccolo.dsa5.data.zaubererweiterung.ZaubererweiterungReader;
+import de.otpiccolo.dsa5.data.zaubertrick.ZaubertrickData;
+import de.otpiccolo.dsa5.data.zaubertrick.ZaubertrickReader;
 import de.otpiccolo.dsa5.data.zeremonialgegenstand.ZeremonialgegenstandData;
 import de.otpiccolo.dsa5.data.zeremonialgegenstand.ZeremonialgegenstandReader;
 import de.otpiccolo.dsa5.data.zeremonien.ZeremonieData;
@@ -49,6 +53,15 @@ import de.otpiccolo.dsa5.data.zeremonien.ZeremonieReader;
  */
 @SuppressWarnings("javadoc")
 public class UlissesDataReaderTest {
+
+	@Test
+	public void testElfenlied() {
+		final var reader = new ElfenliedReader();
+		final var data = reader.readData("Erinnerungsmelodie");
+
+		final var expected = new ElfenliedData("Erinnerungsmelodie", "1 AsP pro 5 Minuten", "Mit dem Lied ruft sich der Elf eine Erinnerung aus lang vergangener Zeit zurück. Für je ein Jahr, das das Ereignis zurückliegt, muss er 5 Minuten spielen. Zusätzlich spielt er so lange, wie die Situation dauert, an die er sich zurückentsinnen will.");
+		Assertions.assertEquals(expected, data);
+	}
 
 	@Test
 	public void testElexier() {
@@ -211,6 +224,15 @@ public class UlissesDataReaderTest {
 		final var data = reader.readData("Balsam Salabunde#Zielkategorie Lebewesen");
 
 		final var expected = new ZaubererweiterungData("Zielkategorie Lebewesen", "Balsam Salabunde", "Der Zauber umfasst auch die Zielkategorie Lebewesen.");
+		Assertions.assertEquals(expected, data);
+	}
+
+	@Test
+	public void testZaubertrick() {
+		final var reader = new ZaubertrickReader();
+		final var data = reader.readData("Blütenduft");
+
+		final var expected = new ZaubertrickData("Blütenduft", "In einem Radius von 16 Schritt um den Magier verströmt die Umgebung einen angenehmen Geruch nach Blüten und Waldesgrün.");
 		Assertions.assertEquals(expected, data);
 	}
 
