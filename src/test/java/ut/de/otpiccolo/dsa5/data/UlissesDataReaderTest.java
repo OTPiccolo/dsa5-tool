@@ -6,6 +6,8 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import de.otpiccolo.dsa5.data.allgemeinesonderfertigkeiten.AllgemeinesonderfertigkeitData;
+import de.otpiccolo.dsa5.data.allgemeinesonderfertigkeiten.AllgemeinesonderfertigkeitReader;
 import de.otpiccolo.dsa5.data.elfenlied.ElfenliedData;
 import de.otpiccolo.dsa5.data.elfenlied.ElfenliedReader;
 import de.otpiccolo.dsa5.data.elixiere.ElixierData;
@@ -53,6 +55,15 @@ import de.otpiccolo.dsa5.data.zeremonien.ZeremonieReader;
  */
 @SuppressWarnings("javadoc")
 public class UlissesDataReaderTest {
+
+	@Test
+	public void testAllgemeineSonderfertigkeit() {
+		final var reader = new AllgemeinesonderfertigkeitReader();
+		final var data = reader.readData("Fischer");
+
+		final var expected = new AllgemeinesonderfertigkeitData("Fischer", "Mit dieser Sonderfertigkeit kann der Held erfolgreicher fischen. Bei einer erfolgreichen Probe auf Fischen & Angeln um Nahrung zu erbeuten kann er 1 QS mehr Nahrung erjagen. Ob es in dem Gewässer genügend essbare Fische und Meeresfrüchte gibt, muss der Spielleiter vorher entscheiden.");
+		Assertions.assertEquals(expected, data);
+	}
 
 	@Test
 	public void testElfenlied() {
