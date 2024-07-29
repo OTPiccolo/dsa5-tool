@@ -40,14 +40,16 @@ public class ImageWriter implements IDataWriter {
 	}
 
 	private PDRectangle calculateImagePlacement(final PDRectangle availableSpace, final PDImage image) {
+		// Image is small enough to fit into available space.
 		if (image.getWidth() < availableSpace.getWidth() && image.getHeight() < availableSpace.getHeight()) {
 			return new PDRectangle(availableSpace.getLowerLeftX(), availableSpace.getLowerLeftY() + (availableSpace.getHeight() - image.getHeight()), image.getWidth(), image.getHeight());
 		}
 
-		// Image will retain its aspect ratio.
+		// Retain aspect ratio of image.
 		// Try to fill image horizontally without clipping.
 		final float horizontalScaling = availableSpace.getWidth() / image.getWidth();
-		final PDRectangle horizontalFit = new PDRectangle(availableSpace.getLowerLeftX(), availableSpace.getLowerLeftY(), image.getWidth() * horizontalScaling, image.getHeight() * horizontalScaling);
+		final float verticalOffset = availableSpace.getHeight() - (image.getHeight() * horizontalScaling);
+		final PDRectangle horizontalFit = new PDRectangle(availableSpace.getLowerLeftX(), availableSpace.getLowerLeftY() + verticalOffset, image.getWidth() * horizontalScaling, image.getHeight() * horizontalScaling);
 		if (horizontalFit.getHeight() <= availableSpace.getHeight()) {
 			return horizontalFit;
 		}
