@@ -11,6 +11,7 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImage;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 import de.otpiccolo.dsa5.pdf.data.IDataWriter;
+import de.otpiccolo.pdf.PDUtil;
 
 /**
  * Class to write an image to a document.
@@ -61,6 +62,9 @@ public class ImageWriter implements IDataWriter {
 	}
 
 	private void drawImage(final PDImageXObject pdImage, final PDPageContentStream content, final PDRectangle position) throws IOException {
+		if (isDrawRectangle()) {
+			PDUtil.drawRectangle(position, content);
+		}
 		content.drawImage(pdImage, position.getLowerLeftX(), position.getLowerLeftY(), position.getWidth(), position.getHeight());
 	}
 
