@@ -64,8 +64,9 @@ public class Irinja extends Person {
 
 		final ParagraphData boneDagger = new ParagraphData("Knochendolch: +4 Schaden auf Meucheln.");
 		final ParagraphData discDagger = new ParagraphData("Scheibendolch: Gegner mit RK >= 4 erhalten -2 auf RK und +1 Schaden. Kein Kreuzblock möglich.");
+		final ParagraphData toshkrilDagger = new ParagraphData("Toshkrildolch: Magischer Dolch aus Toshkril (+2TP/+1AT). Hat Giftinjektor, um Waffengift direkt einfügen zu können.");
 		final ParagraphData poisonSpit = new ParagraphData("Giftspucke: Wird regeltechnisch wie 'Wurfdolch' gehandhabt. 1/Tag, 1W6+5 Schaden + Ätzend (W3/KR) ");
-		final List<ParagraphData> weapons = Arrays.asList(boneDagger, discDagger, poisonSpit);
+		final List<ParagraphData> weapons = Arrays.asList(boneDagger, discDagger, toshkrilDagger, poisonSpit);
 		page.getWriters().add(new ParagraphWriter("Waffen", weapons));
 
 		final ParagraphData butteflyAmulet = new ParagraphData("Schmetterlings-Amulett: Kann 1/Tag Saturias Herrlichkeit zaubern als QS1 für 3 Stunden.");
