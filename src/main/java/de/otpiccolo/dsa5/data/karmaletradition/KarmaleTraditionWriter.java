@@ -40,6 +40,7 @@ public class KarmaleTraditionWriter extends ADataWriter {
 				for (final String rule : tradition.rules()) {
 					space = writeParagraph(rule, content, space, 5f);
 				}
+				space.setUpperRightY(space.getUpperRightY() - 10f);
 			}
 			// Remove last Karmale Tradition spacing.
 			space.setUpperRightY(space.getUpperRightY() + 15f);
