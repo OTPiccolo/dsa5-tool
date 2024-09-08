@@ -12,6 +12,8 @@ import de.otpiccolo.dsa5.data.vision.VisionReader;
 import de.otpiccolo.dsa5.data.vision.VisionWriter;
 import de.otpiccolo.dsa5.data.vorteile.VorteilReader;
 import de.otpiccolo.dsa5.data.vorteile.VorteilWriter;
+import de.otpiccolo.dsa5.data.zeremonialgegenstand.ZeremonialgegenstandReader;
+import de.otpiccolo.dsa5.data.zeremonialgegenstand.ZeremonialgegenstandWriter;
 import de.otpiccolo.dsa5.data.zeremonien.ZeremonieReader;
 import de.otpiccolo.dsa5.data.zeremonien.ZeremonieWriter;
 import de.otpiccolo.dsa5.pdf.data.image.ImageReader;
@@ -37,6 +39,7 @@ public class Lothar extends Person {
 		vorteilNachteilPage.getWriters().add(fillWriter(NachteilWriter::new, NachteilReader::new, "Behäbig", "Fettleibig", "Verpflichtungen I-III"));
 
 		final DefaultPage karmaPage = new DefaultPage("Karmale Sonderfertigkeiten");
+		karmaPage.getWriters().add(fillWriter(ZeremonialgegenstandWriter::new, ZeremonialgegenstandReader::new, "Band des Umsorgens", "Bund der Heilung"));
 		karmaPage.getWriters().add(fillWriter(PredigtWriter::new, PredigtReader::new, "Predigt des Gottvertrauens"));
 		karmaPage.getWriters().add(fillWriter(VisionWriter::new, VisionReader::new, "Vision der Gottheit"));
 
