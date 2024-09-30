@@ -89,8 +89,8 @@ public class FernkampfModPage extends DefaultPage {
 		final ParagraphData pg12 = new ParagraphData("+2 auf FK");
 		final ParagraphData pg22 = new ParagraphData("+/–0 auf FK");
 		final ParagraphData pg32 = new ParagraphData("–2 auf FK");
-		final ParagraphData pg42 = new ParagraphData("-4 auf FK, GS des Ziels halbiert");
-		final ParagraphData pg52 = new ParagraphData("-2 auf FK");
+		final ParagraphData pg42 = new ParagraphData("–4 auf FK, GS des Ziels halbiert");
+		final ParagraphData pg52 = new ParagraphData("–2 auf FK");
 		final ParagraphData pg62 = new ParagraphData("–4 auf FK");
 
 		final List<IDataWriter> header = Arrays.asList(new ParagraphWriter("Bewegung", Collections.emptySet()));
