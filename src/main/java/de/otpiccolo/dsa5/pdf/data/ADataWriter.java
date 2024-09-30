@@ -135,7 +135,8 @@ public abstract class ADataWriter implements IDataWriter {
 	 */
 	protected void drawRectangle(final PDPageContentStream content, final PDRectangle newAvailableSpace, final PDRectangle oldAvailableSpace) throws IOException {
 		if (isDrawRectangle()) {
-			final PDRectangle rectangle = new PDRectangle(newAvailableSpace.getLowerLeftX(), oldAvailableSpace.getUpperRightY() - (oldAvailableSpace.getHeight() - newAvailableSpace.getHeight()), oldAvailableSpace.getWidth(), oldAvailableSpace.getHeight() - newAvailableSpace.getHeight());
+			final float heightDif = oldAvailableSpace.getHeight() - newAvailableSpace.getHeight();
+			final PDRectangle rectangle = new PDRectangle(newAvailableSpace.getLowerLeftX(), oldAvailableSpace.getUpperRightY() - heightDif, oldAvailableSpace.getWidth(), heightDif);
 			PDUtil.drawRectangle(rectangle, content);
 		}
 	}

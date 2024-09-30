@@ -45,8 +45,6 @@ public class ParagraphWriter extends ADataWriter {
 
 	@Override
 	public PDRectangle writeData(final PDDocument doc, final PDPage page, final PDRectangle availableSpace) throws IOException {
-		// public float writeData(final PDDocument doc, final PDPage page, final
-		// float verticalOffset) throws IOException {
 		PDRectangle space = PDUtil.copyRectangle(availableSpace);
 		try (PDPageContentStream content = new PDPageContentStream(doc, page, AppendMode.APPEND, true, true)) {
 			if (title != null) {
@@ -55,8 +53,6 @@ public class ParagraphWriter extends ADataWriter {
 			for (final ParagraphData data : paragraphs) {
 				space = writeParagraph(data.paragraph(), content, space, 5f);
 			}
-			// Remove last Paragraph spacing.
-			space.setUpperRightY(space.getUpperRightY() + 5f);
 			drawRectangle(content, space, availableSpace);
 		}
 

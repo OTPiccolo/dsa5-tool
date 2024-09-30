@@ -15,7 +15,7 @@ import de.otpiccolo.dsa5.pdf.data.IDataWriter;
  */
 public class TableWriter implements IDataWriter {
 
-	private static final float CELL_INDENT = 5;
+	private static final float CELL_INDENT = 1;
 
 	private final TableData tableData;
 
@@ -52,7 +52,7 @@ public class TableWriter implements IDataWriter {
 		int index = 0;
 		for (final IDataWriter writer : rowData) {
 			final PDRectangle cellSpace = new PDRectangle(lowerLeftX, availableRowSpace.getLowerLeftY(), columnSize[index], availableRowSpace.getHeight());
-			final PDRectangle indentedSpace = new PDRectangle(cellSpace.getLowerLeftX() + CELL_INDENT, cellSpace.getLowerLeftY() - CELL_INDENT, cellSpace.getWidth() - 2 * CELL_INDENT, cellSpace.getHeight() - 2 * CELL_INDENT);
+			final PDRectangle indentedSpace = new PDRectangle(cellSpace.getLowerLeftX() + CELL_INDENT, cellSpace.getLowerLeftY() + CELL_INDENT, cellSpace.getWidth() - 2 * CELL_INDENT, cellSpace.getHeight() - 2 * CELL_INDENT);
 			final PDRectangle spaceAfterwards = writer.writeData(doc, page, indentedSpace);
 			maxUsedHeight = Math.max(maxUsedHeight, cellSpace.getHeight() - spaceAfterwards.getHeight());
 			lowerLeftX += columnSize[index];

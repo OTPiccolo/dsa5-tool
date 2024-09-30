@@ -51,7 +51,7 @@ public class DefaultPage implements IPage {
 
 		if (getTitle() != null) {
 			try (PDPageContentStream content = new PDPageContentStream(doc, page)) {
-				writeTitle(content, availableSpace);
+				availableSpace = writeTitle(content, availableSpace);
 				availableSpace.setUpperRightY(availableSpace.getUpperRightY() - 20f);
 			}
 		}
@@ -62,7 +62,7 @@ public class DefaultPage implements IPage {
 		}
 	}
 
-	private void writeTitle(final PDPageContentStream content, final PDRectangle availableSpace) throws IOException {
+	private PDRectangle writeTitle(final PDPageContentStream content, final PDRectangle availableSpace) throws IOException {
 		final int fontSize = PDUtil.FONT_SIZE * 2;
 		final PDFont font = PDUtil.FONT_BOLD;
 		final float titleWidth = font.getStringWidth(getTitle()) / 1000 * fontSize;
@@ -74,7 +74,7 @@ public class DefaultPage implements IPage {
 		content.showText(getTitle());
 		content.endText();
 
-		availableSpace.setUpperRightY(availableSpace.getUpperRightY() - titleHeight);
+		return new PDRectangle(availableSpace.getLowerLeftX(), availableSpace.getLowerLeftY(), availableSpace.getWidth(), availableSpace.getHeight() - titleHeight);
 	}
 
 	/**
