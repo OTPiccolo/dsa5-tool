@@ -19,9 +19,32 @@ import de.otpiccolo.dsa5.pdf.data.IDataWriter;
  *            A nested list of each cells that should be drawn in the table.
  *            Each inner list is a complete row, containing for each column in
  *            order the data writer that will populate the cell.
+ * @param cellIndent
+ *            The indentation inside of cells on each side.
  *
  */
-public record TableData(int[] columnWeights, List<List<IDataWriter>> cellData) {
+public record TableData(int[] columnWeights, List<List<IDataWriter>> cellData, float cellIndent) {
+
+	/**
+	 * A record containing table data. Using a default cell indentation of zero.
+	 *
+	 * @param columnWeights
+	 *            The weight of each column. Each entry in the array represents
+	 *            a column, and the value is a ratio to each other column on how
+	 *            much space of the total table it should take. If all entries
+	 *            are the same, each column takes on the same space in the
+	 *            table. The values can add up to any arbitrary number. For
+	 *            example, an entry like [1,2,1] would make the middle column
+	 *            take up twice as much space as each other column (as much as
+	 *            both other columns combined).
+	 * @param cellData
+	 *            A nested list of each cells that should be drawn in the table.
+	 *            Each inner list is a complete row, containing for each column
+	 *            in order the data writer that will populate the cell.
+	 */
+	public TableData(final int[] columnWeights, final List<List<IDataWriter>> cellData) {
+		this(columnWeights, cellData, 0);
+	}
 
 	/**
 	 * Gets the column aspect ratio, with each entry in the array being a number
