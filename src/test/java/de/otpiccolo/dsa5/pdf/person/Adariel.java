@@ -1,5 +1,7 @@
 package de.otpiccolo.dsa5.pdf.person;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 import de.otpiccolo.dsa5.data.allgemeinesonderfertigkeiten.AllgemeinesonderfertigkeitReader;
@@ -18,6 +20,8 @@ import de.otpiccolo.dsa5.data.vorteile.VorteilReader;
 import de.otpiccolo.dsa5.data.vorteile.VorteilWriter;
 import de.otpiccolo.dsa5.data.zauber.ZauberReader;
 import de.otpiccolo.dsa5.data.zauber.ZauberWriter;
+import de.otpiccolo.dsa5.data.zaubererweiterung.ZaubererweiterungReader;
+import de.otpiccolo.dsa5.data.zaubererweiterung.ZaubererweiterungWriter;
 import de.otpiccolo.dsa5.data.zauberstilsonderfertigkeiten.ZauberstilsonderfertigkeitReader;
 import de.otpiccolo.dsa5.data.zauberstilsonderfertigkeiten.ZauberstilsonderfertigkeitWriter;
 import de.otpiccolo.dsa5.data.zaubertrick.ZaubertrickReader;
@@ -26,6 +30,8 @@ import de.otpiccolo.dsa5.datazaubertradition.ZauberTraditionReader;
 import de.otpiccolo.dsa5.datazaubertradition.ZauberTraditionWriter;
 import de.otpiccolo.dsa5.pdf.data.image.ImageReader;
 import de.otpiccolo.dsa5.pdf.data.image.ImageWriter;
+import de.otpiccolo.dsa5.pdf.data.paragraph.ParagraphData;
+import de.otpiccolo.dsa5.pdf.data.paragraph.ParagraphWriter;
 import de.otpiccolo.dsa5.pdf.page.DefaultPage;
 import de.otpiccolo.dsa5.pdf.page.IPage;
 import de.otpiccolo.dsa5.pdf.page.predefined.FernkampfModPage;
@@ -33,7 +39,7 @@ import de.otpiccolo.dsa5.pdf.page.predefined.SchicksalspunktePage;
 import de.otpiccolo.dsa5.pdf.page.predefined.ZauberModPage;
 
 /**
- * Information about Thyra.
+ * Information about Adariel.
  */
 public class Adariel extends Person {
 
@@ -48,7 +54,7 @@ public class Adariel extends Person {
 		nachteilPage.getWriters().add(fillWriter(NachteilWriter::new, NachteilReader::new, "Körpergebundene Kraft", "Lästige Mindergeister", "Sensibler Geruchssinn (*)", "Unfähig", "Unverträglichkeit gegenüber Alkohol", "Wahrer Name"));
 
 		final DefaultPage kampfPage = new DefaultPage("Kampfsonderfertigkeiten");
-		kampfPage.getWriters().add(fillWriter(KampfsonderfertigkeitWriter::new, KampfsonderfertigkeitReader::new, "Belastungsgewöhnung I-II", "Schnellladen (Kampftechnik)"));
+		kampfPage.getWriters().add(fillWriter(KampfsonderfertigkeitWriter::new, KampfsonderfertigkeitReader::new, "Belastungsgewöhnung I-II", "Feindgespür", "Schnellladen (Kampftechnik)"));
 		kampfPage.getWriters().add(fillWriter(KampfstilsonderfertigkeitWriter::new, KampfstilsonderfertigkeitReader::new, "Odilmar-Stil"));
 
 		final DefaultPage sonderfertigkeitenPage = new DefaultPage("Sonderfertigkeiten");
@@ -59,7 +65,8 @@ public class Adariel extends Person {
 		final DefaultPage zauberPage1 = new DefaultPage("Zauber");
 		zauberPage1.getWriters().add(fillWriter(ZauberWriter::new, ZauberReader::new, "Axxeleratus", "Balsam Salabunde", "Bannbaladin", "Hilfreiche Pfote"));
 		final DefaultPage zauberPage2 = new DefaultPage();
-		zauberPage2.getWriters().add(fillWriter(ZauberWriter::new, ZauberReader::new, "Humuspfeil", "Spurlos", "Tiergedanken"));
+		zauberPage2.getWriters().add(fillWriter(ZauberWriter::new, ZauberReader::new, "Humuspfeil", "Spurlos", "Tiergedanken", "Hexenkrallen"));
+		zauberPage2.getWriters().add(fillWriter(ZaubererweiterungWriter::new, ZaubererweiterungReader::new, "Hexenkrallen#Ein- und ausfahrbare Krallen", "Hexenkrallen#Hand und Fuß", "Hexenkrallen#Kletterhilfe", "Hexenkrallen#Lange Krallen", "Hexenkrallen#Scharfe Krallen"));
 
 		final DefaultPage sonstigeZauberPage = new DefaultPage("Zaubertricks & Elfenlieder");
 		sonstigeZauberPage.getWriters().add(fillWriter(ZaubertrickWriter::new, ZaubertrickReader::new, "Blütenduft", "Elfenhaar", "Putziges Tierchen", "Schmutzabweisend"));
@@ -68,6 +75,7 @@ public class Adariel extends Person {
 		final DefaultPage itemPage = new DefaultPage("Gegenstände");
 		itemPage.getWriters().add(fillWriter(ElixierWriter::new, ElixierReader::new, "Heiltrank", "Zaubertrank"));
 
+		final IPage otherPage = getOtherPage();
 		final IPage fernModPage = new FernkampfModPage();
 		final IPage zauberModPage = new ZauberModPage();
 		final IPage schipsPage = new SchicksalspunktePage();
@@ -75,7 +83,17 @@ public class Adariel extends Person {
 		final DefaultPage imagePage = new DefaultPage();
 		imagePage.getWriters().add(new ImageWriter(new ImageReader().readData("D:\\RP\\Bilder\\Adariel Abendfreundin.png")));
 
-		setPages(Stream.of(vorteilPage, nachteilPage, kampfPage, sonderfertigkeitenPage, zauberPage1, zauberPage2, sonstigeZauberPage, itemPage, fernModPage, zauberModPage, schipsPage, imagePage));
+		setPages(Stream.of(vorteilPage, nachteilPage, kampfPage, sonderfertigkeitenPage, zauberPage1, zauberPage2, sonstigeZauberPage, otherPage, fernModPage, zauberModPage, schipsPage, itemPage, imagePage));
+	}
+
+	private IPage getOtherPage() {
+		final DefaultPage page = new DefaultPage("Sonstiges");
+
+		final ParagraphData kamaluqTatoo = new ParagraphData("Kamaluq-Tatoo: Tatoo eines Panthers auf den Händen. Sie bewirken, dass der Zauber Hexenkrallen mit FP 16 über LP anstelle von AsP (4 LP) gewirkt werden kann. Beinhaltet alle Zaubererweiterungen. Gelten als Karmale Waffe (Praios).");
+		final List<ParagraphData> other = Arrays.asList(kamaluqTatoo);
+		page.getWriters().add(new ParagraphWriter("Sonstiges", other));
+
+		return page;
 	}
 
 }
