@@ -42,6 +42,10 @@ import de.otpiccolo.dsa5.data.zauber.ZauberData;
 import de.otpiccolo.dsa5.data.zauber.ZauberReader;
 import de.otpiccolo.dsa5.data.zaubererweiterung.ZaubererweiterungData;
 import de.otpiccolo.dsa5.data.zaubererweiterung.ZaubererweiterungReader;
+import de.otpiccolo.dsa5.data.zauberstilsonderfertigkeiten.ZauberstilsonderfertigkeitData;
+import de.otpiccolo.dsa5.data.zauberstilsonderfertigkeiten.ZauberstilsonderfertigkeitReader;
+import de.otpiccolo.dsa5.data.zaubertradition.ZauberTraditionData;
+import de.otpiccolo.dsa5.data.zaubertradition.ZauberTraditionReader;
 import de.otpiccolo.dsa5.data.zaubertrick.ZaubertrickData;
 import de.otpiccolo.dsa5.data.zaubertrick.ZaubertrickReader;
 import de.otpiccolo.dsa5.data.zeremonialgegenstand.ZeremonialgegenstandData;
@@ -235,6 +239,30 @@ public class UlissesDataReaderTest {
 		final var data = reader.readData("Balsam Salabunde#Zielkategorie Lebewesen");
 
 		final var expected = new ZaubererweiterungData("Zielkategorie Lebewesen", "Balsam Salabunde", "Der Zauber umfasst auch die Zielkategorie Lebewesen.");
+		Assertions.assertEquals(expected, data);
+	}
+
+	@Test
+	public void testZauberstilSonderfertigkeit() {
+		final var reader = new ZauberstilsonderfertigkeitReader();
+		final var data = reader.readData("Bewahrer");
+
+		final var expected = new ZauberstilsonderfertigkeitData("Bewahrer", "Ein Bewahrer sticht durch seine Heilzauberei heraus. Auf Zauber, die LeP regenerieren, erhält er eine Begabung. Sollte er schon eine Begabung in einem dieser Zauber haben, so kann er statt 1W20 sogar 2W20 noch einmal würfeln.");
+		Assertions.assertEquals(expected, data);
+	}
+
+	@Test
+	public void testZauberTradition() {
+		final var reader = new ZauberTraditionReader();
+		final var data = reader.readData("Nachtalben");
+
+		final List<String> rules = new ArrayList<String>(3);
+		rules.add("Ein Zauber der nachtalbischen Tradition erfordert Sicht auf das Ziel sowie eine magische Geste und ausgesprochene Formel, die auch unauffällig sein können.");
+		rules.add("Nachtalbische Zauber können in Zauberbücher und Schriftrollen niedergeschrieben und aus ihnen ohne Lehrmeister erlernt werden.");
+		rules.add("Nachtalben können prinzipiell elfische Zauberlieder erlernen und nutzen, da sie automatisch den Zweistimmigen Gesang beherrschen. Sie verfügen durch ihre bisherige Abgeschiedenheit aber über einen gänzlich eigenen Satz an Verzerrten Elfenliedern.");
+		rules.add("Zauber des Merkmals Dämonisch verfügen über eine verdoppelte Wirkungsdauer und kosten 1 AsP weniger. Die AsP-Kosten können dadurch nicht unter 1 sinken.");
+		rules.add("Die Leiteigenschaft der Tradition ist Mut.");
+		final var expected = new ZauberTraditionData("Nachtalben", "Mut", rules);
 		Assertions.assertEquals(expected, data);
 	}
 
