@@ -1,4 +1,4 @@
-package de.otpiccolo.dsa5.datazaubertradition;
+package de.otpiccolo.dsa5.data.zaubertradition;
 
 import java.io.IOException;
 import java.util.Collection;
