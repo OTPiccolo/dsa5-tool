@@ -44,6 +44,8 @@ import de.otpiccolo.dsa5.data.zaubererweiterung.ZaubererweiterungData;
 import de.otpiccolo.dsa5.data.zaubererweiterung.ZaubererweiterungReader;
 import de.otpiccolo.dsa5.data.zauberstilsonderfertigkeiten.ZauberstilsonderfertigkeitData;
 import de.otpiccolo.dsa5.data.zauberstilsonderfertigkeiten.ZauberstilsonderfertigkeitReader;
+import de.otpiccolo.dsa5.data.zaubertanz.ZaubertanzData;
+import de.otpiccolo.dsa5.data.zaubertanz.ZaubertanzReader;
 import de.otpiccolo.dsa5.data.zaubertradition.ZauberTraditionData;
 import de.otpiccolo.dsa5.data.zaubertradition.ZauberTraditionReader;
 import de.otpiccolo.dsa5.data.zaubertrick.ZaubertrickData;
@@ -248,6 +250,15 @@ public class UlissesDataReaderTest {
 		final var data = reader.readData("Bewahrer");
 
 		final var expected = new ZauberstilsonderfertigkeitData("Bewahrer", "Ein Bewahrer sticht durch seine Heilzauberei heraus. Auf Zauber, die LeP regenerieren, erhält er eine Begabung. Sollte er schon eine Begabung in einem dieser Zauber haben, so kann er statt 1W20 sogar 2W20 noch einmal würfeln.");
+		Assertions.assertEquals(expected, data);
+	}
+
+	@Test
+	public void testZaubertanz() {
+		final var reader = new ZaubertanzReader();
+		final var data = reader.readData("Tanz der Beweglichkeit");
+
+		final var expected = new ZaubertanzData("Tanz der Beweglichkeit", "kurz, aufrechterhaltend", "8 AsP", "Die Rahkisa erhält einen Bonus von QS/2 auf GS und Ausweichen. Die Wirkung hält 1 Stunde nach dem Ende des Tanzes an.");
 		Assertions.assertEquals(expected, data);
 	}
 
