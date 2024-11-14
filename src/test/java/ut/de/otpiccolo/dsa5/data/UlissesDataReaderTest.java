@@ -14,6 +14,8 @@ import de.otpiccolo.dsa5.data.elixiere.ElixierData;
 import de.otpiccolo.dsa5.data.elixiere.ElixierReader;
 import de.otpiccolo.dsa5.data.erweiteterliturgiestil.ErweiterterLiturgiestilData;
 import de.otpiccolo.dsa5.data.erweiteterliturgiestil.ErweiterterLiturgiestilReader;
+import de.otpiccolo.dsa5.data.gewandzauber.GewandzauberData;
+import de.otpiccolo.dsa5.data.gewandzauber.GewandzauberReader;
 import de.otpiccolo.dsa5.data.hexenfluch.HexenfluchData;
 import de.otpiccolo.dsa5.data.hexenfluch.HexenfluchReader;
 import de.otpiccolo.dsa5.data.kampfsonderfertigkeiten.KampfsonderfertigkeitData;
@@ -102,6 +104,15 @@ public class UlissesDataReaderTest {
 		final var data = reader.readData("Altes Zwergenwissen");
 
 		final var expected = new ErweiterterLiturgiestilData("Altes Zwergenwissen", "Setzt der Geweihte bei einem wohlgefälligen Talent ein Mirakel ein, erhält er dafür zusätzlich eine Erleichterung von +1.", "Hüter der Tradition");
+		Assertions.assertEquals(expected, data);
+	}
+
+	@Test
+	public void testGewandzauber() {
+		final var reader = new GewandzauberReader();
+		final var data = reader.readData("Schmutzabweisend");
+
+		final var expected = new GewandzauberData("Schmutzabweisend", 1, "keine", "Die Kleidung wird nie schmutzig, nimmt keine fremden Gerüche auf und muss nie gereinigt werden.");
 		Assertions.assertEquals(expected, data);
 	}
 
