@@ -1,4 +1,4 @@
-package de.otpiccolo.dsa5.data.weapon.swords;
+package de.otpiccolo.dsa5.data.weapon.schwerter;
 
 /**
  * A record of Schwert data.

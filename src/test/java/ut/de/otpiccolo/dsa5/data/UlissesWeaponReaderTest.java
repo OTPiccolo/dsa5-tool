@@ -3,8 +3,8 @@ package ut.de.otpiccolo.dsa5.data;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import de.otpiccolo.dsa5.data.weapon.swords.SchwertData;
-import de.otpiccolo.dsa5.data.weapon.swords.SchwertReader;
+import de.otpiccolo.dsa5.data.weapon.schwerter.SchwertData;
+import de.otpiccolo.dsa5.data.weapon.schwerter.SchwertReader;
 
 /**
  * Test to make sure that all Weapon Reader correctly read data from Ulisses
