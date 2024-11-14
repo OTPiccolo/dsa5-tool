@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import de.otpiccolo.dsa5.pdf.person.Adariel;
 import de.otpiccolo.dsa5.pdf.person.Irinja;
 import de.otpiccolo.dsa5.pdf.person.Lothar;
+import de.otpiccolo.dsa5.pdf.person.Manjula;
 import de.otpiccolo.dsa5.pdf.person.Person;
 import de.otpiccolo.dsa5.pdf.person.Thyra;
 
@@ -38,6 +39,14 @@ public class PersonTest {
 		final String source = "D:\\Schieb\\Lothar.pdf";
 		final String destination = "C:\\Users\\OT Piccolo\\Desktop\\temp\\test.pdf";
 		writePerson(new Lothar(), source, destination);
+	}
+
+	@Test
+	@Disabled
+	public void writeManjula() throws Exception {
+		final String source = "D:\\Schieb\\Manjula.pdf";
+		final String destination = "C:\\Users\\OT Piccolo\\Desktop\\temp\\test.pdf";
+		writePerson(new Manjula(), source, destination);
 	}
 
 	@Test
