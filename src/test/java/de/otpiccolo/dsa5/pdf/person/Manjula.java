@@ -14,6 +14,8 @@ import de.otpiccolo.dsa5.data.kampfsonderfertigkeiten.KampfsonderfertigkeitReade
 import de.otpiccolo.dsa5.data.kampfsonderfertigkeiten.KampfsonderfertigkeitWriter;
 import de.otpiccolo.dsa5.data.kampfstilsonderfertigkeiten.KampfstilsonderfertigkeitReader;
 import de.otpiccolo.dsa5.data.kampfstilsonderfertigkeiten.KampfstilsonderfertigkeitWriter;
+import de.otpiccolo.dsa5.data.magischesonderfertigkeiten.MagischeSonderfertigkeitReader;
+import de.otpiccolo.dsa5.data.magischesonderfertigkeiten.MagischeSonderfertigkeitWriter;
 import de.otpiccolo.dsa5.data.nachteile.NachteilReader;
 import de.otpiccolo.dsa5.data.nachteile.NachteilWriter;
 import de.otpiccolo.dsa5.data.vorteile.VorteilReader;
@@ -47,7 +49,7 @@ public class Manjula extends Person {
 	 */
 	public Manjula() {
 		final DefaultPage vorteilPage = new DefaultPage("Vorteile & Nachteile");
-		vorteilPage.getWriters().add(fillWriter(VorteilWriter::new, VorteilReader::new, "Begabung", "Gutaussehend I-II", "Hart im Nehmen", "Verbesserte Regeneration (Astralenergie) I-III", "Verbesserte Regeneration (Lebensenergie) I-III", "Weitreichende Zaubertänze I-III"));
+		vorteilPage.getWriters().add(fillWriter(VorteilWriter::new, VorteilReader::new, "Begabung", "Gutaussehend I-II", "Hart im Nehmen", "Verbesserte Regeneration (Astralenergie) I-III", "Weitreichende Zaubertänze I-III"));
 		vorteilPage.getWriters().add(fillWriter(NachteilWriter::new, NachteilReader::new, "Angst vor … I-III", "Giftanfällig I-II", "Krankheitsanfällig I-II", "Unfähig"));
 
 		final DefaultPage kampfPage = new DefaultPage("Kampfsonderfertigkeiten");
@@ -58,6 +60,7 @@ public class Manjula extends Person {
 
 		final DefaultPage sonderfertigkeitenPage = new DefaultPage("Sonderfertigkeiten");
 		sonderfertigkeitenPage.getWriters().add(fillWriter(AllgemeinesonderfertigkeitWriter::new, AllgemeinesonderfertigkeitReader::new, "Rahjasutra-Kenntnisse", "Ortskenntnis"));
+		sonderfertigkeitenPage.getWriters().add(fillWriter(MagischeSonderfertigkeitWriter::new, MagischeSonderfertigkeitReader::new, "Magische Regeneration I-II", "Meisterliche Regeneration"));
 
 		final DefaultPage zaubertanzPage = new DefaultPage("Zaubertänze");
 		zaubertanzPage.getWriters().add(fillWriter(ZaubertanzWriter::new, ZaubertanzReader::new, "Tanz der Bilder", "Tanz der Liebe", "Tanz der Unantastbarkeit", "Tanz der Verteidigung", "Tanz ohne Ende"));
