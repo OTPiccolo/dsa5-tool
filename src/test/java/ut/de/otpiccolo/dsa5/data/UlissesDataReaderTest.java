@@ -30,6 +30,8 @@ import de.otpiccolo.dsa5.data.liturgien.LiturgieData;
 import de.otpiccolo.dsa5.data.liturgien.LiturgieReader;
 import de.otpiccolo.dsa5.data.liturgiestil.LiturgiestilData;
 import de.otpiccolo.dsa5.data.liturgiestil.LiturgiestilReader;
+import de.otpiccolo.dsa5.data.magischesonderfertigkeiten.MagischeSonderfertigkeitData;
+import de.otpiccolo.dsa5.data.magischesonderfertigkeiten.MagischeSonderfertigkeitReader;
 import de.otpiccolo.dsa5.data.nachteile.NachteilData;
 import de.otpiccolo.dsa5.data.nachteile.NachteilReader;
 import de.otpiccolo.dsa5.data.predigt.PredigtData;
@@ -189,6 +191,15 @@ public class UlissesDataReaderTest {
 		final var data = reader.readData("Anhänger des guten Kampfes");
 
 		final var expected = new LiturgiestilData("Anhänger des guten Kampfes", "Gegen Dämonen und Ungeheuer verfügen Anhänger des guten Kampfes über +1 RS. Dieser RS ist mit anderem RS kombinierbar, wenn dieser auch gegen das Ungeheuer schützt");
+		Assertions.assertEquals(expected, data);
+	}
+
+	@Test
+	public void testMagischeSonderfertigkeit() {
+		final var reader = new MagischeSonderfertigkeitReader();
+		final var data = reader.readData("Lieblingszauber");
+
+		final var expected = new MagischeSonderfertigkeitData("Lieblingszauber", "Der Held kann einen einzigen Zauber zu seinem Lieblingszauber erklären. Dieser Zauber hat bei Gelingen +2 FP (bis zu einem Maximum von 18 FP). Diese SF kann ein Zauberer nur einmal für einen einzigen Zauber erwerben.");
 		Assertions.assertEquals(expected, data);
 	}
 
