@@ -19,6 +19,8 @@ import de.otpiccolo.dsa5.data.magischesonderfertigkeiten.MagischeSonderfertigkei
 import de.otpiccolo.dsa5.data.magischesonderfertigkeiten.MagischeSonderfertigkeitWriter;
 import de.otpiccolo.dsa5.data.nachteile.NachteilReader;
 import de.otpiccolo.dsa5.data.nachteile.NachteilWriter;
+import de.otpiccolo.dsa5.data.talentstilsonderfertigkeiten.TalentstilsonderfertigkeitReader;
+import de.otpiccolo.dsa5.data.talentstilsonderfertigkeiten.TalentstilsonderfertigkeitWriter;
 import de.otpiccolo.dsa5.data.vorteile.VorteilReader;
 import de.otpiccolo.dsa5.data.vorteile.VorteilWriter;
 import de.otpiccolo.dsa5.data.weapon.dolche.DolchReader;
@@ -63,14 +65,15 @@ public class Manjula extends Person {
 		kampfPage.getWriters().add(new ParagraphWriter("Kor-Amulett", Collections.singleton(new ParagraphData("Das Kor-Amulett ermöglicht es dem Träger, einen weiteren Angriff in dieser Kampfrunde durchzuführen. Dafür muss der Träger 2 HP dem Amulett opfern. Dieser Verlust von HP kann nicht verhindert werden."))));
 
 		final DefaultPage sonderfertigkeitenPage = new DefaultPage("Sonderfertigkeiten");
-		sonderfertigkeitenPage.getWriters().add(fillWriter(AllgemeinesonderfertigkeitWriter::new, AllgemeinesonderfertigkeitReader::new, "Ortskenntnis"));
 		sonderfertigkeitenPage.getWriters().add(fillWriter(MagischeSonderfertigkeitWriter::new, MagischeSonderfertigkeitReader::new, "Magische Regeneration I-II", "Meisterliche Regeneration"));
+		sonderfertigkeitenPage.getWriters().add(fillWriter(AllgemeinesonderfertigkeitWriter::new, AllgemeinesonderfertigkeitReader::new, "Ortskenntnis", "Rahjasutra-Kenntnisse"));
+		sonderfertigkeitenPage.getWriters().add(fillWriter(TalentstilsonderfertigkeitWriter::new, TalentstilsonderfertigkeitReader::new, "Weg der Künstlerin"));
 
 		final DefaultPage zaubertanzPage = new DefaultPage("Zaubertänze");
-		zaubertanzPage.getWriters().add(fillWriter(ZaubertanzWriter::new, ZaubertanzReader::new, "Tanz der Bilder", "Tanz der Liebe", "Tanz der Unantastbarkeit", "Tanz der Verteidigung", "Tanz ohne Ende"));
+		zaubertanzPage.getWriters().add(fillWriter(ZaubertanzWriter::new, ZaubertanzReader::new, "Tanz der Bilder", "Tanz der Liebe", "Tanz der Verteidigung", "Tanz ohne Ende"));
 
 		final DefaultPage gewandzauberPage = new DefaultPage("Gewandzauber & Zaubersprüche");
-		gewandzauberPage.getWriters().add(fillWriter(GewandzauberWriter::new, GewandzauberReader::new, "Besitzanspruch", "Diebesgewand", "Schmutzabweisend"));
+		gewandzauberPage.getWriters().add(fillWriter(GewandzauberWriter::new, GewandzauberReader::new, "Besitzanspruch", "Diebesgewand", "Schmutzabweisend", "Schutzgewand I-II"));
 		gewandzauberPage.getWriters().add(fillWriter(ZauberWriter::new, ZauberReader::new, "Flim Flam"));
 		gewandzauberPage.getWriters().add(new ParagraphWriter(Collections.singleton(new ParagraphData("Der Flim Flam wird über die Fähigkeit \"Tanzen\" aktiviert und darüber wird auch der QS bestimmt. Die einmaligen Aktivierungskosten entfallen, es müssen nur die AsP zum aufrechterhalten des Zaubers ausgegeben werden. Das Licht geht immer vom Zaubernden aus und strahlt wie die Sonne."))));
 
