@@ -1,4 +1,4 @@
-package de.otpiccolo.dsa5.data.erweiteterliturgiestil;
+package de.otpiccolo.dsa5.data.erweiterterliturgiestil;
 
 import java.io.IOException;
 import java.util.Collection;
