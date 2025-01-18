@@ -14,6 +14,8 @@ import de.otpiccolo.dsa5.data.elixiere.ElixierData;
 import de.otpiccolo.dsa5.data.elixiere.ElixierReader;
 import de.otpiccolo.dsa5.data.erweiterterliturgiestil.ErweiterterLiturgiestilData;
 import de.otpiccolo.dsa5.data.erweiterterliturgiestil.ErweiterterLiturgiestilReader;
+import de.otpiccolo.dsa5.data.erweitertertalentstil.ErweiterterTalentstilData;
+import de.otpiccolo.dsa5.data.erweitertertalentstil.ErweiterterTalentstilReader;
 import de.otpiccolo.dsa5.data.gewandzauber.GewandzauberData;
 import de.otpiccolo.dsa5.data.gewandzauber.GewandzauberReader;
 import de.otpiccolo.dsa5.data.hexenfluch.HexenfluchData;
@@ -38,6 +40,8 @@ import de.otpiccolo.dsa5.data.predigt.PredigtData;
 import de.otpiccolo.dsa5.data.predigt.PredigtReader;
 import de.otpiccolo.dsa5.data.segen.SegenData;
 import de.otpiccolo.dsa5.data.segen.SegenReader;
+import de.otpiccolo.dsa5.data.talentstilsonderfertigkeiten.TalentstilsonderfertigkeitData;
+import de.otpiccolo.dsa5.data.talentstilsonderfertigkeiten.TalentstilsonderfertigkeitReader;
 import de.otpiccolo.dsa5.data.vision.VisionData;
 import de.otpiccolo.dsa5.data.vision.VisionReader;
 import de.otpiccolo.dsa5.data.vorteile.VorteilData;
@@ -106,6 +110,15 @@ public class UlissesDataReaderTest {
 		final var data = reader.readData("Altes Zwergenwissen");
 
 		final var expected = new ErweiterterLiturgiestilData("Altes Zwergenwissen", "Setzt der Geweihte bei einem wohlgefälligen Talent ein Mirakel ein, erhält er dafür zusätzlich eine Erleichterung von +1.", "Hüter der Tradition");
+		Assertions.assertEquals(expected, data);
+	}
+
+	@Test
+	public void testErweiterterTalentstil() {
+		final var reader = new ErweiterterTalentstilReader();
+		final var data = reader.readData("Allgemeinwissen");
+
+		final var expected = new ErweiterterTalentstilData("Allgemeinwissen", "Die Heldin kann bei einer Probe auf ein Wissenstalent, die maximal um 3 erschwert sein darf, entscheiden, ob sie die Probe ablegen möchte oder diese automatisch als mit QS 1 gelungen gilt.");
 		Assertions.assertEquals(expected, data);
 	}
 
@@ -218,6 +231,24 @@ public class UlissesDataReaderTest {
 		final var data = reader.readData("Predigt der Zuversicht");
 
 		final var expected = new PredigtData("Predigt der Zuversicht", "QS ausgewählte Zuhörer können 1 Stunde lang eine einzige Stufe Furcht ignorieren. Nach Ablauf der Stunde wirkt die Stufe wieder. Die Wirkung wurde lediglich unterbrochen. Während der Stunde können die Zuhörer aber neue Stufen Furcht erleiden. Kein Zuhörer kann innerhalb von 24 Stunden mehr als einmal von dieser Predigt profitieren. Die Heldin muss für die Predigt 1 Schip einsetzen und sie ist nur einmal alle 24 Stunden einsetzbar.");
+		Assertions.assertEquals(expected, data);
+	}
+
+	@Test
+	public void testTalentstilsonderfertigkeit_Style1() {
+		final var reader = new TalentstilsonderfertigkeitReader();
+		final var data = reader.readData("Weg der Künstlerin");
+
+		final var expected = new TalentstilsonderfertigkeitData("Weg der Künstlerin", "Die Heldin kann ein Talent, das zur Anwendung ihrer Kunst entscheidend ist, mit Erwerb dieses Stils aussuchen und fortan damit Geld verdienen (siehe Aventurisches Kompendium Seite 11). Sie bekommt statt Kreuzern oder Heller für die Anwendung ihrer Kunst Silbertaler.");
+		Assertions.assertEquals(expected, data);
+	}
+
+	@Test
+	public void testTalentstilsonderfertigkeit_Style2() {
+		final var reader = new TalentstilsonderfertigkeitReader();
+		final var data = reader.readData("Weg d. Bardin");
+
+		final var expected = new TalentstilsonderfertigkeitData("Weg d. Bardin", "Die Heldin erhält bei Musizieren und Singen eine Erleichterung von 1.");
 		Assertions.assertEquals(expected, data);
 	}
 
