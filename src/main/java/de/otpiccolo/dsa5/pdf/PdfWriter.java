@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.stream.Stream;
 
+import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +37,7 @@ public class PdfWriter {
 
 	private PDDocument loadDoc(final String file) throws IOException {
 		LOG.info(file == null ? "Creating empty PDF." : "Loading source PDF from: " + file);
-		return file == null ? new PDDocument() : PDDocument.load(new File(file));
+		return file == null ? new PDDocument() : Loader.loadPDF(new File(file));
 	}
 
 	private void saveDoc(final PDDocument doc, final String file) throws IOException {

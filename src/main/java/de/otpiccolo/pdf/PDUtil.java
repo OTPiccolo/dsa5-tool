@@ -9,6 +9,7 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
 
 /**
  * Util class for PDFs.
@@ -20,11 +21,11 @@ public class PDUtil {
 	/** Page margin to not write on */
 	public static final float PAGE_MARGIN = 10f;
 	/** Standard font to print in PDF */
-	public static final PDFont FONT = PDType1Font.HELVETICA;
+	public static final PDFont FONT = new PDType1Font(Standard14Fonts.FontName.HELVETICA);
 	/** Standard bold font to print in PDF */
-	public static final PDFont FONT_BOLD = PDType1Font.HELVETICA_BOLD;
+	public static final PDFont FONT_BOLD = new PDType1Font(Standard14Fonts.FontName.HELVETICA_BOLD);
 	/** Standard italic font to print in PDF */
-	public static final PDFont FONT_ITALIC = PDType1Font.HELVETICA_BOLD_OBLIQUE;
+	public static final PDFont FONT_ITALIC = new PDType1Font(Standard14Fonts.FontName.HELVETICA_OBLIQUE);
 	/** Standard font size */
 	public static final int FONT_SIZE = 12;
 
