@@ -353,7 +353,7 @@ public class UlissesDataReaderTest {
 		final var reader = new ZeremonieReader();
 		final var data = reader.readData("Frostschutz");
 
-		final var expected = new ZeremonieData("Frostschutz", "5 Minuten", "4 KaP (Aktivierung der Zeremonie) + 2 KaP pro 30 Minuten", "Der Firungeweihte erleidet kaum noch negative Auswirkungen durch eine kalte Umgebung. Für ihn gilt die Kältestufe als um QS/2 gesenkt.");
+		final var expected = new ZeremonieData("Frostschutz", "5 Minuten", "4 KaP (Aktivierung der Zeremonie) + 2 KaP pro 30 Minuten", "Der Geweihte erleidet kaum noch negative Auswirkungen durch eine kalte Umgebung. Für ihn gilt die Kältestufe als um QS/2 gesenkt.");
 		Assertions.assertEquals(expected, data);
 	}
 
