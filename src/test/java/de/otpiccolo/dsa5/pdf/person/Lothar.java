@@ -2,6 +2,8 @@ package de.otpiccolo.dsa5.pdf.person;
 
 import java.util.stream.Stream;
 
+import de.otpiccolo.dsa5.data.kampfsonderfertigkeiten.KampfsonderfertigkeitReader;
+import de.otpiccolo.dsa5.data.kampfsonderfertigkeiten.KampfsonderfertigkeitWriter;
 import de.otpiccolo.dsa5.data.liturgien.LiturgieReader;
 import de.otpiccolo.dsa5.data.liturgien.LiturgieWriter;
 import de.otpiccolo.dsa5.data.nachteile.NachteilReader;
@@ -38,6 +40,9 @@ public class Lothar extends Person {
 		vorteilNachteilPage.getWriters().add(fillWriter(VorteilWriter::new, VorteilReader::new, "Verbesserte Regeneration (Lebensenergie) I-III", "Vertrauenerweckend", "Zäher Hund"));
 		vorteilNachteilPage.getWriters().add(fillWriter(NachteilWriter::new, NachteilReader::new, "Behäbig", "Fettleibig", "Verpflichtungen I-III"));
 
+		final DefaultPage kampfPage = new DefaultPage("Kampf-Sonderfertigkeiten");
+		kampfPage.getWriters().add(fillWriter(KampfsonderfertigkeitWriter::new, KampfsonderfertigkeitReader::new, "Belastungsgewöhnung I-II", "Wuchtschlag I-III"));
+
 		final DefaultPage karmaPage = new DefaultPage("Karmale Sonderfertigkeiten");
 		karmaPage.getWriters().add(fillWriter(ZeremonialgegenstandWriter::new, ZeremonialgegenstandReader::new, "Band des Umsorgens", "Bund der Heilung"));
 		karmaPage.getWriters().add(fillWriter(PredigtWriter::new, PredigtReader::new, "Predigt des Gottvertrauens"));
@@ -57,7 +62,7 @@ public class Lothar extends Person {
 		final DefaultPage imagePage = new DefaultPage();
 		imagePage.getWriters().add(new ImageWriter(new ImageReader().readData("D:\\RP\\Bilder\\Lothar.png")));
 
-		setPages(Stream.of(vorteilNachteilPage, karmaPage, liturgiePage, zeremoniePage, traviaPage, segenPage, modPage, schipsPage, imagePage));
+		setPages(Stream.of(kampfPage, karmaPage, liturgiePage, zeremoniePage, traviaPage, segenPage, modPage, schipsPage, imagePage));
 	}
 
 }
