@@ -21,7 +21,7 @@ public class PersonTest {
 	@Disabled
 	public void writeAdariel() throws Exception {
 		final String source = "D:\\Schieb\\Adariel Abendfreundin.pdf";
-		final String destination = "C:\\Users\\OT Piccolo\\Desktop\\temp\\test.pdf";
+		final String destination = "C:\\Users\\OT Piccolo\\Desktop\\temp\\Adariel Abendfreundin.pdf";
 		writePerson(new Adariel(), source, destination);
 	}
 
@@ -29,7 +29,7 @@ public class PersonTest {
 	@Disabled
 	public void writeIrinja() throws Exception {
 		final String source = "D:\\Schieb\\Irinja.pdf";
-		final String destination = "C:\\Users\\OT Piccolo\\Desktop\\temp\\test.pdf";
+		final String destination = "C:\\Users\\OT Piccolo\\Desktop\\temp\\Irinja.pdf";
 		writePerson(new Irinja(), source, destination);
 	}
 
@@ -37,7 +37,7 @@ public class PersonTest {
 	@Disabled
 	public void writeLothar() throws Exception {
 		final String source = "D:\\Schieb\\Lothar.pdf";
-		final String destination = "C:\\Users\\OT Piccolo\\Desktop\\temp\\test.pdf";
+		final String destination = "C:\\Users\\OT Piccolo\\Desktop\\temp\\Lothar.pdf";
 		writePerson(new Lothar(), source, destination);
 	}
 
@@ -45,7 +45,7 @@ public class PersonTest {
 	@Disabled
 	public void writeManjula() throws Exception {
 		final String source = "D:\\Schieb\\Manjula.pdf";
-		final String destination = "C:\\Users\\OT Piccolo\\Desktop\\temp\\test.pdf";
+		final String destination = "C:\\Users\\OT Piccolo\\Desktop\\temp\\Manjula.pdf";
 		writePerson(new Manjula(), source, destination);
 	}
 
