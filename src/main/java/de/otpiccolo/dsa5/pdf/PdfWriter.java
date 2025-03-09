@@ -18,8 +18,8 @@ public class PdfWriter {
 
 	private static final Logger LOG = LoggerFactory.getLogger(PdfWriter.class);
 
-	private String source;
-	private String destination;
+	private File source;
+	private File destination;
 	private Stream<IPage> pages;
 
 	/**
@@ -35,12 +35,12 @@ public class PdfWriter {
 		saveDoc(doc, getDestination());
 	}
 
-	private PDDocument loadDoc(final String file) throws IOException {
+	private PDDocument loadDoc(final File file) throws IOException {
 		LOG.info(file == null ? "Creating empty PDF." : "Loading source PDF from: " + file);
-		return file == null ? new PDDocument() : Loader.loadPDF(new File(file));
+		return file == null ? new PDDocument() : Loader.loadPDF(file);
 	}
 
-	private void saveDoc(final PDDocument doc, final String file) throws IOException {
+	private void saveDoc(final PDDocument doc, final File file) throws IOException {
 		LOG.info("Saving PDF to: {}", file);
 		if (file != null) {
 			doc.save(file);
@@ -59,42 +59,42 @@ public class PdfWriter {
 	}
 
 	/**
-	 * Gets the file name of the source PDF. If not given, an empty PDF is used.
+	 * Gets the file of the source PDF. If not given, an empty PDF is used.
 	 *
 	 * @return The file name of the source PDF.
 	 */
-	public String getSource() {
+	public File getSource() {
 		return source;
 	}
 
 	/**
-	 * Sets the file name of the source PDF. If not given, an empty PDF is used.
+	 * Sets the file of the source PDF. If not given, an empty PDF is used.
 	 *
 	 * @param source
 	 *            The file name of the source PDF.
 	 */
-	public void setSource(final String source) {
+	public void setSource(final File source) {
 		this.source = source;
 	}
 
 	/**
-	 * Gets the file name of the destination PDF. If not given, no PDF will be
+	 * Gets the file of the destination PDF. If not given, no PDF will be
 	 * written.
 	 *
 	 * @return The file name of the destination PDF.
 	 */
-	public String getDestination() {
+	public File getDestination() {
 		return destination;
 	}
 
 	/**
-	 * Gets the file name of the destination PDF. If not given, no PDF will be
+	 * Gets the file of the destination PDF. If not given, no PDF will be
 	 * written.
 	 *
 	 * @param destination
 	 *            The file name of the destination PDF.
 	 */
-	public void setDestination(final String destination) {
+	public void setDestination(final File destination) {
 		this.destination = destination;
 	}
 
