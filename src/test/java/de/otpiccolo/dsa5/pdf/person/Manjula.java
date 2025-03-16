@@ -82,7 +82,7 @@ public class Manjula extends Person {
 		sonstigeZauberPage.getWriters().add(fillWriter(ZauberTraditionWriter::new, ZauberTraditionReader::new, "Zaubertänzer"));
 
 		final DefaultPage itemPage = new DefaultPage("Gegenstände");
-		itemPage.getWriters().add(fillWriter(ElixierWriter::new, ElixierReader::new, "Heiltrank", "Zaubertrank"));
+		itemPage.getWriters().add(fillWriter(ElixierWriter::new, ElixierReader::new, "Berserkerelixier", "Heiltrank", "Schmerzwein", "Zaubertrank"));
 
 		final IPage otherPage = getOtherPage();
 		final IPage zauberModPage = new ZauberModPage();

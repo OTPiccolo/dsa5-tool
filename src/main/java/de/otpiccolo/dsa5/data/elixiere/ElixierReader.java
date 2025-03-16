@@ -62,19 +62,38 @@ public class ElixierReader extends AUlissesReader<ElixierData> {
 
 	private Map<String, String> readElixiere() {
 		getLog().info("Initializinge Elixiere data.");
+		final Map<String, String> elixiere = new HashMap<String, String>();
+		addElixiere1(elixiere);
+		addElixiere2(elixiere);
+		return elixiere;
+	}
+
+	private void addElixiere1(final Map<String, String> map) {
 		Document doc;
 		try {
 			doc = loadDocument("/Elixier.html");
 		} catch (final IOException e) {
 			getLog().error("Error reading overview page of Elixiere. Error message: " + e.getMessage(), e);
-			return Collections.emptyMap();
+			return;
 		}
 
-		final Map<String, String> map = new HashMap<>();
 		for (final Element element : doc.selectXpath("//a[@class='ulSubMenu']")) {
 			map.put(element.attr("title"), "/" + element.attr("href"));
 		}
-		return map;
+	}
+
+	private void addElixiere2(final Map<String, String> map) {
+		Document doc;
+		try {
+			doc = loadDocument("/her_a_elixiere.html");
+		} catch (final IOException e) {
+			getLog().error("Error reading overview page of Elixiere. Error message: " + e.getMessage(), e);
+			return;
+		}
+
+		for (final Element element : doc.selectXpath("//a[@class='ulSubMenu']")) {
+			map.put(element.attr("title"), "/" + element.attr("href"));
+		}
 	}
 
 	private int getCost(final Element root) {

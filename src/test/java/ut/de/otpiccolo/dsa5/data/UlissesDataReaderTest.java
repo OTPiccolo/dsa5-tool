@@ -89,7 +89,8 @@ public class UlissesDataReaderTest {
 	}
 
 	@Test
-	public void testElexier() {
+	public void testElexier1() {
+		// From 'Elixier' page.
 		final var reader = new ElixierReader();
 		final var data = reader.readData("Kaltes Licht");
 
@@ -101,6 +102,24 @@ public class UlissesDataReaderTest {
 		qs.add("Das Kalte Licht besitzt den Lichtradius einer Fackel für 2,5 Stunden.");
 		qs.add("Das Kalte Licht besitzt den Lichtradius einer Fackel für 3 Stunden.");
 		final var expected = new ElixierData("Kaltes Licht", 22, qs);
+		Assertions.assertEquals(expected, data);
+		Assertions.assertEquals(data.cost(), 15);
+	}
+
+	@Test
+	public void testElexier2() {
+		// From 'Alchemistische Rezepte -> Elixier' page.
+		final var reader = new ElixierReader();
+		final var data = reader.readData("Fingerfertigkeitselixier");
+
+		final List<String> qs = new ArrayList<String>(6);
+		qs.add("+1 FF für 20 Minuten");
+		qs.add("+1 FF, +1 FK für 20 Minuten");
+		qs.add("+2 FF, +1 FK für 20 Minuten");
+		qs.add("+2 FF, +2 FK für 20 Minuten");
+		qs.add("+3 FF, +2 FK für 20 Minuten");
+		qs.add("+3 FF, +3 FK für 20 Minuten");
+		final var expected = new ElixierData("Fingerfertigkeitselixier", 45, qs);
 		Assertions.assertEquals(expected, data);
 	}
 
