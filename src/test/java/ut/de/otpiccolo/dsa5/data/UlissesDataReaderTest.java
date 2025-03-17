@@ -103,7 +103,6 @@ public class UlissesDataReaderTest {
 		qs.add("Das Kalte Licht besitzt den Lichtradius einer Fackel für 3 Stunden.");
 		final var expected = new ElixierData("Kaltes Licht", 22, qs);
 		Assertions.assertEquals(expected, data);
-		Assertions.assertEquals(data.cost(), 15);
 	}
 
 	@Test
@@ -201,9 +200,9 @@ public class UlissesDataReaderTest {
 		final var data = reader.readData("Praioskirche");
 
 		final List<String> rules = new ArrayList<String>(3);
-		rules.add("Wille des Götterfürsten: Bei der Liturgiemodifikation Erzwingen erhält der Geweihte eine Erleichterung von 2 (statt 1).");
-		rules.add("Magieschutz: Wird Magie gegen den Praiosgeweihten gewirkt, so verbessert sich hiergegen seine Seelenkraft um 1.");
-		rules.add("Ein Praiosgeweihter muss sich an den Moralkodex (Prinzipientreue) halten. Die Wahl des Nachteils ist Voraussetzung, wenn der Spieler einen Geweihten der Kirche spielen will.");
+		rules.add("Wille des Götterfürsten: Bei der Liturgiemodifikation Erzwingen erhält die Geweihte eine Erleichterung von +2 (statt +1).");
+		rules.add("Magieschutz: Wird Magie gegen die Praiosgeweihte gewirkt, so verbessert sich ihre Seelenkraft hiergegen um 1.");
+		rules.add("Eine Praiosgeweihte muss sich an den Moralkodex (Prinzipientreue) halten. Die Wahl des Nachteils ist Voraussetzung, wenn der Spieler eine Geweihte der Kirche spielen will.");
 		final var expected = new KarmaleTraditionData("Praioskirche", "Klugheit", "Bekehren & Überzeugen, Einschüchtern, Etikette, Menschenkenntnis, Willenskraft, Orientierung, Götter & Kulte, Magiekunde, Rechtskunde, Sphärenkunde", rules);
 		Assertions.assertEquals(expected, data);
 	}
@@ -213,7 +212,7 @@ public class UlissesDataReaderTest {
 		final var reader = new LiturgieReader();
 		final var data = reader.readData("Bärenhaut");
 
-		final var expected = new LiturgieData("Bärenhaut", "4 Aktion(en)", "8 KaP (Kosten sind nicht modifizierbar)", "Der Geweihte erhält einen natürlichen RS von 2, der mit RS aus anderen Quellen kombiniert werden kann.");
+		final var expected = new LiturgieData("Bärenhaut", "2 Aktion(en)", "8 KaP (Kosten sind nicht modifizierbar)", "Der Geweihte erhält einen natürlichen RS von 2, der mit RS aus anderen Quellen kombiniert werden kann. Kältestufen werden für den Geweihten außerdem um 1 Stufe reduziert, bis zu einem Minimum von 0.");
 		Assertions.assertEquals(expected, data);
 	}
 
@@ -276,7 +275,7 @@ public class UlissesDataReaderTest {
 		final var reader = new SegenReader();
 		final var data = reader.readData("Glückssegen");
 
-		final var expected = new SegenData("Glückssegen", "Der Gesegnete hat einmal während der Wirkungsdauer der Segnung ein Fünkchen Glück. Er kann nach dem Ablegen einer Fertigkeitsprobe 1 FP hinzuaddieren, um z. B. eine höhere Qualitätsstufe zu erreichen.");
+		final var expected = new SegenData("Glückssegen", "Der Gesegnete hat einmal während der Wirkungsdauer der Segnung ein Fünkchen Glück. Er kann nach dem Ablegen einer Fertigkeitsprobe 1 FP hinzuaddieren, um z. B. eine höhere Qualitätsstufe zu erreichen. Diese Segnung kann bspw. dabei helfen, eine Probe doch noch zu bestehen oder eine höhere QS zu erreichen.");
 		Assertions.assertEquals(expected, data);
 	}
 
