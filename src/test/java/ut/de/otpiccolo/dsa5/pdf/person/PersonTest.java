@@ -62,7 +62,7 @@ public class PersonTest {
 	@Disabled
 	public void writeThyra() throws Exception {
 		final String source = "D:\\Schieb\\Thyra Kjaskardottir.pdf";
-		final String destination = "C:\\Users\\OT Piccolo\\Desktop\\temp\\test.pdf";
+		final String destination = "C:\\Users\\OT Piccolo\\Desktop\\temp\\Thyra Kjaskardottir.pdf";
 		writePerson(new Thyra(), source, destination);
 	}
 
