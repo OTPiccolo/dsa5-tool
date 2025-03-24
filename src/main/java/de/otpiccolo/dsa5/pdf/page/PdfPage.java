@@ -1,11 +1,13 @@
 package de.otpiccolo.dsa5.pdf.page;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 
@@ -15,6 +17,19 @@ import de.otpiccolo.pdf.PDUtil;
  * A page copying the PDF contents of another PDF.
  */
 public class PdfPage implements IPage {
+
+	/**
+	 * Creates a PDF page from the given file.
+	 *
+	 * @param file
+	 *            The file to load the PDF from.
+	 * @return The created PDF page.
+	 * @throws IOException
+	 *             If the file could not be read or parsed.
+	 */
+	public static final PdfPage create(final File file) throws IOException {
+		return new PdfPage(Loader.loadPDF(file));
+	}
 
 	private final PDDocument content;
 	private final Collection<Integer> pageIndices;
