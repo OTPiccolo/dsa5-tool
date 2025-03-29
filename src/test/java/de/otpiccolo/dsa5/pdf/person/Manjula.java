@@ -43,6 +43,7 @@ import de.otpiccolo.dsa5.pdf.page.DefaultPage;
 import de.otpiccolo.dsa5.pdf.page.IPage;
 import de.otpiccolo.dsa5.pdf.page.predefined.SchicksalspunktePage;
 import de.otpiccolo.dsa5.pdf.page.predefined.ZauberModPage;
+import de.otpiccolo.dsa5.pdf.page.predefined.geweihte.RondraPage;
 
 /**
  * Information about Manjula.
@@ -68,6 +69,7 @@ public class Manjula extends Person {
 		sonderfertigkeitenPage.getWriters().add(fillWriter(MagischeSonderfertigkeitWriter::new, MagischeSonderfertigkeitReader::new, "Magische Regeneration I-II", "Meisterliche Regeneration"));
 		sonderfertigkeitenPage.getWriters().add(fillWriter(AllgemeinesonderfertigkeitWriter::new, AllgemeinesonderfertigkeitReader::new, "Ortskenntnis", "Rahjasutra-Kenntnisse"));
 		sonderfertigkeitenPage.getWriters().add(fillWriter(TalentstilsonderfertigkeitWriter::new, TalentstilsonderfertigkeitReader::new, "Weg der Künstlerin"));
+		sonderfertigkeitenPage.getWriters().add(new ParagraphWriter("Rondras Segen", Collections.singleton(new ParagraphData("Rondras Segen ermöglicht einen einmal pro Tag, für ein Rondra wohlgefällige Tat zusätzliche 4FP zu bekommen. Dies kann nach einem Wurf dazu verwendet werden, um den QS der Probe zu erhöhen oder einen Misserfolg noch zu einem Erfolg zu machen. Dies gilt auch für Angriffe/Verteidigungen."))));
 
 		final DefaultPage zaubertanzPage = new DefaultPage("Zaubertänze");
 		zaubertanzPage.getWriters().add(fillWriter(ZaubertanzWriter::new, ZaubertanzReader::new, "Tanz der Bilder", "Tanz der Liebe", "Tanz der Verteidigung", "Tanz ohne Ende"));
@@ -84,6 +86,7 @@ public class Manjula extends Person {
 		final DefaultPage itemPage = new DefaultPage("Gegenstände");
 		itemPage.getWriters().add(fillWriter(ElixierWriter::new, ElixierReader::new, "Berserkerelixier", "Heiltrank", "Schmerzwein", "Zaubertrank"));
 
+		final IPage rondraPage = new RondraPage();
 		final IPage otherPage = getOtherPage();
 		final IPage zauberModPage = new ZauberModPage();
 		final IPage schipsPage = new SchicksalspunktePage();
@@ -91,7 +94,7 @@ public class Manjula extends Person {
 		final DefaultPage imagePage = new DefaultPage();
 		imagePage.getWriters().add(new ImageWriter(new ImageReader().readData("D:\\RP\\Bilder\\Manjula bint Kirisha at Baburin.jpg")));
 
-		setPages(Stream.of(vorteilPage, kampfPage, sonderfertigkeitenPage, zaubertanzPage, gewandzauberPage, sonstigeZauberPage, otherPage, zauberModPage, schipsPage, itemPage, imagePage));
+		setPages(Stream.of(vorteilPage, kampfPage, sonderfertigkeitenPage, zaubertanzPage, gewandzauberPage, sonstigeZauberPage, otherPage, rondraPage, zauberModPage, schipsPage, itemPage, imagePage));
 	}
 
 	private IPage getOtherPage() {
