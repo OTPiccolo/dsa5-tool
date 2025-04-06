@@ -35,8 +35,16 @@ public class WeaponWriter extends ADataWriter {
 		try (PDPageContentStream content = new PDPageContentStream(doc, page, AppendMode.APPEND, true, true)) {
 			for (final WeaponData weapon : data) {
 				space = writeTitle(weapon.name(), content, space, 5f);
-				space = writeParagraph("Vorteil: " + weapon.upside(), content, space, 5f);
-				space = writeParagraph("Nachteil: " + weapon.downside(), content, space, 15f);
+				if (weapon.upside() != null) {
+					space = writeParagraph("Vorteil: " + weapon.upside(), content, space, 5f);
+				}
+				if (weapon.downside() != null) {
+					space = writeParagraph("Nachteil: " + weapon.downside(), content, space, 5f);
+				}
+				if (weapon.comment() != null) {
+					space = writeParagraph("Anmerkung: " + weapon.comment(), content, space, 5f);
+				}
+				space = new PDRectangle(space.getLowerLeftX(), space.getLowerLeftY(), space.getWidth(), space.getHeight() - 10f);
 			}
 			// Remove last weapon spacing.
 			space.setUpperRightY(space.getUpperRightY() + 15f);

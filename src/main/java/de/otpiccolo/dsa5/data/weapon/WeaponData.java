@@ -11,7 +11,9 @@ package de.otpiccolo.dsa5.data.weapon;
  *            The upside this weapon has when wielding it.
  * @param downside
  *            The downside this weapon has when wielding it.
+ * @param comment
+ *            An additional comment for this weapon.
  */
-public record WeaponData(String name, String category, String upside, String downside) {
+public record WeaponData(String name, String category, String upside, String downside, String comment) {
 
 }

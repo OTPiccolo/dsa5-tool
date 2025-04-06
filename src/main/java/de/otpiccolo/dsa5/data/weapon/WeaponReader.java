@@ -26,7 +26,7 @@ public class WeaponReader extends AUlissesReader<WeaponData> {
 		final Weapon weapon = toWeaponType(name);
 		if (weapon == null) {
 			getLog().warn("Could not determine weapon type for given name: {}", name);
-			return new WeaponData(name, null, null, null);
+			return new WeaponData(name, null, null, null, null);
 		}
 
 		return readWeaponData(weapon);
@@ -42,25 +42,26 @@ public class WeaponReader extends AUlissesReader<WeaponData> {
 
 	private WeaponData readWeaponData(final Weapon weapon) {
 		getLog().info("Getting data for weapon \"{}\".", weapon.name);
-		String upside;
-		String downside;
-
 		final String page = getPage(weapon);
 		if (page == null) {
-			return new WeaponData(weapon.name, "Weapon not found: " + weapon.name + " (" + weapon.category + ")", null, null);
+			return new WeaponData(weapon.name, "Weapon not found: " + weapon.name + " (" + weapon.category + ")", null, null, null);
 		}
 
+		String upside;
+		String downside;
+		String comment;
 		try {
-
 			final Document doc = loadDocument(page);
 			upside = getAdditionalData(doc, "Waffenvorteil");
 			downside = getAdditionalData(doc, "Waffennachteil");
+			comment = getAdditionalData(doc, "Anmerkung");
 		} catch (final IOException e) {
 			getLog().error("Error reading weapon \"" + weapon.name + "\". Error message: " + e.getMessage(), e);
 			upside = e.getMessage();
 			downside = null;
+			comment = null;
 		}
-		return new WeaponData(weapon.name, weapon.category, upside, downside);
+		return new WeaponData(weapon.name, weapon.category, upside, downside, comment);
 	}
 
 	private String getAdditionalData(final Element root, final String name) {
@@ -74,7 +75,7 @@ public class WeaponReader extends AUlissesReader<WeaponData> {
 				return text.substring(key.length()).stripLeading();
 			}
 		}
-		return "<Not Found>";
+		return null;
 	}
 
 	private String getPage(final Weapon weapon) {
