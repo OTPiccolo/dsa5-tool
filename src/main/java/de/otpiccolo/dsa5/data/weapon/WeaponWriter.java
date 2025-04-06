@@ -1,4 +1,4 @@
-package de.otpiccolo.dsa5.data.weapon.dolche;
+package de.otpiccolo.dsa5.data.weapon;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -13,19 +13,19 @@ import de.otpiccolo.dsa5.pdf.data.ADataWriter;
 import de.otpiccolo.pdf.PDUtil;
 
 /**
- * Class to write Dolche to a document.
+ * Class to write weapons to a document.
  */
-public class DolchWriter extends ADataWriter {
+public class WeaponWriter extends ADataWriter {
 
-	private final Collection<DolchData> data;
+	private final Collection<WeaponData> data;
 
 	/**
-	 * A collection containing Dolche.
+	 * A collection containing weapons.
 	 *
 	 * @param data
-	 *            The Dolche.
+	 *            The weapons.
 	 */
-	public DolchWriter(final Collection<DolchData> data) {
+	public WeaponWriter(final Collection<WeaponData> data) {
 		this.data = data;
 	}
 
@@ -33,12 +33,12 @@ public class DolchWriter extends ADataWriter {
 	public PDRectangle writeData(final PDDocument doc, final PDPage page, final PDRectangle availableSpace) throws IOException {
 		PDRectangle space = PDUtil.copyRectangle(availableSpace);
 		try (PDPageContentStream content = new PDPageContentStream(doc, page, AppendMode.APPEND, true, true)) {
-			for (final DolchData dolch : data) {
-				space = writeTitle(dolch.name(), content, space, 5f);
-				space = writeParagraph("Vorteil: " + dolch.upside(), content, space, 5f);
-				space = writeParagraph("Nachteil: " + dolch.downside(), content, space, 15f);
+			for (final WeaponData weapon : data) {
+				space = writeTitle(weapon.name(), content, space, 5f);
+				space = writeParagraph("Vorteil: " + weapon.upside(), content, space, 5f);
+				space = writeParagraph("Nachteil: " + weapon.downside(), content, space, 15f);
 			}
-			// Remove last Dolch spacing.
+			// Remove last weapon spacing.
 			space.setUpperRightY(space.getUpperRightY() + 15f);
 			drawRectangle(content, space, availableSpace);
 		}

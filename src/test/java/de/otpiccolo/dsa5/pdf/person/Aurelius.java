@@ -14,12 +14,8 @@ import de.otpiccolo.dsa5.data.nachteile.NachteilReader;
 import de.otpiccolo.dsa5.data.nachteile.NachteilWriter;
 import de.otpiccolo.dsa5.data.vorteile.VorteilReader;
 import de.otpiccolo.dsa5.data.vorteile.VorteilWriter;
-import de.otpiccolo.dsa5.data.weapon.dolche.DolchReader;
-import de.otpiccolo.dsa5.data.weapon.dolche.DolchWriter;
-import de.otpiccolo.dsa5.data.weapon.schilde.SchildReader;
-import de.otpiccolo.dsa5.data.weapon.schilde.SchildWriter;
-import de.otpiccolo.dsa5.data.weapon.schwerter.SchwertReader;
-import de.otpiccolo.dsa5.data.weapon.schwerter.SchwertWriter;
+import de.otpiccolo.dsa5.data.weapon.WeaponReader;
+import de.otpiccolo.dsa5.data.weapon.WeaponWriter;
 import de.otpiccolo.dsa5.pdf.data.image.ImageReader;
 import de.otpiccolo.dsa5.pdf.data.image.ImageWriter;
 import de.otpiccolo.dsa5.pdf.data.paragraph.ParagraphData;
@@ -43,9 +39,7 @@ public class Aurelius extends Person {
 
 		final DefaultPage kampfPage = new DefaultPage("Kampfsonderfertigkeiten");
 		kampfPage.getWriters().add(fillWriter(KampfsonderfertigkeitWriter::new, KampfsonderfertigkeitReader::new, "Beidhändiger Kampf I-II", "Belastungsgewöhnung I-II", "Wuchtschlag I-III"));
-		kampfPage.getWriters().add(fillWriter(SchwertWriter::new, SchwertReader::new, "Langschwert"));
-		kampfPage.getWriters().add(fillWriter(DolchWriter::new, DolchReader::new, "Messer"));
-		kampfPage.getWriters().add(fillWriter(SchildWriter::new, SchildReader::new, "Thorwalerschild"));
+		kampfPage.getWriters().add(fillWriter(WeaponWriter::new, WeaponReader::new, "Schwerter:Langschwert", "Dolche:Messer", "Schilde:Thorwalerschild"));
 
 		final DefaultPage sonderfertigkeitenPage = new DefaultPage("Sonderfertigkeiten");
 		sonderfertigkeitenPage.getWriters().add(fillWriter(AllgemeinesonderfertigkeitWriter::new, AllgemeinesonderfertigkeitReader::new, "Entfernungen schätzen", "Fertigkeitsspezialisierung (Talente)", "Geländekunde", "Wettervorhersage"));

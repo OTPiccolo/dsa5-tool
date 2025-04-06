@@ -23,10 +23,8 @@ import de.otpiccolo.dsa5.data.talentstilsonderfertigkeiten.Talentstilsonderferti
 import de.otpiccolo.dsa5.data.talentstilsonderfertigkeiten.TalentstilsonderfertigkeitWriter;
 import de.otpiccolo.dsa5.data.vorteile.VorteilReader;
 import de.otpiccolo.dsa5.data.vorteile.VorteilWriter;
-import de.otpiccolo.dsa5.data.weapon.dolche.DolchReader;
-import de.otpiccolo.dsa5.data.weapon.dolche.DolchWriter;
-import de.otpiccolo.dsa5.data.weapon.schwerter.SchwertReader;
-import de.otpiccolo.dsa5.data.weapon.schwerter.SchwertWriter;
+import de.otpiccolo.dsa5.data.weapon.WeaponReader;
+import de.otpiccolo.dsa5.data.weapon.WeaponWriter;
 import de.otpiccolo.dsa5.data.zauber.ZauberReader;
 import de.otpiccolo.dsa5.data.zauber.ZauberWriter;
 import de.otpiccolo.dsa5.data.zaubertanz.ZaubertanzReader;
@@ -61,8 +59,7 @@ public class Manjula extends Person {
 		final DefaultPage kampfPage = new DefaultPage("Kampfsonderfertigkeiten");
 		kampfPage.getWriters().add(fillWriter(KampfsonderfertigkeitWriter::new, KampfsonderfertigkeitReader::new, "Einhändiger Kampf", "Finte I-III", "Klingensturm"));
 		kampfPage.getWriters().add(fillWriter(KampfstilsonderfertigkeitWriter::new, KampfstilsonderfertigkeitReader::new, "Baburin-Stil"));
-		kampfPage.getWriters().add(fillWriter(SchwertWriter::new, SchwertReader::new, "Khunchomer"));
-		kampfPage.getWriters().add(fillWriter(DolchWriter::new, DolchReader::new, "Waqqif"));
+		kampfPage.getWriters().add(fillWriter(WeaponWriter::new, WeaponReader::new, "Schwerter:Khunchomer", "Dolche:Waqqif"));
 		kampfPage.getWriters().add(new ParagraphWriter("Kor-Amulett", Collections.singleton(new ParagraphData("Das Kor-Amulett ermöglicht es dem Träger, einen weiteren Angriff in dieser Kampfrunde durchzuführen. Dafür muss der Träger 2 HP dem Amulett opfern. Dieser Verlust von HP kann nicht verhindert werden."))));
 
 		final DefaultPage sonderfertigkeitenPage = new DefaultPage("Sonderfertigkeiten");
