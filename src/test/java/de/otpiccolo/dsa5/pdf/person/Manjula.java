@@ -53,7 +53,7 @@ public class Manjula extends Person {
 	 */
 	public Manjula() {
 		final DefaultPage vorteilPage = new DefaultPage("Vorteile & Nachteile");
-		vorteilPage.getWriters().add(fillWriter(VorteilWriter::new, VorteilReader::new, "Begabung", "Gutaussehend I-II", "Hart im Nehmen", "Verbesserte Regeneration (Astralenergie) I-III", "Weitreichende Zaubertänze I-III"));
+		vorteilPage.getWriters().add(fillWriter(VorteilWriter::new, VorteilReader::new, "Begabung", "Gutaussehend I-II", "Hart im Nehmen", "Verbesserte Regeneration (Astralenergie) I-III", "Weitreichende Zaubertänze I-III", "Zäher Hund"));
 		vorteilPage.getWriters().add(fillWriter(NachteilWriter::new, NachteilReader::new, "Angst vor … I-III", "Giftanfällig I-II", "Krankheitsanfällig I-II", "Unfähig"));
 
 		final DefaultPage kampfPage = new DefaultPage("Kampfsonderfertigkeiten");
@@ -67,6 +67,7 @@ public class Manjula extends Person {
 		sonderfertigkeitenPage.getWriters().add(fillWriter(AllgemeinesonderfertigkeitWriter::new, AllgemeinesonderfertigkeitReader::new, "Ortskenntnis", "Rahjasutra-Kenntnisse"));
 		sonderfertigkeitenPage.getWriters().add(fillWriter(TalentstilsonderfertigkeitWriter::new, TalentstilsonderfertigkeitReader::new, "Weg der Künstlerin"));
 		sonderfertigkeitenPage.getWriters().add(new ParagraphWriter("Rondras Segen", Collections.singleton(new ParagraphData("Rondras Segen ermöglicht einen einmal pro Tag, für ein Rondra wohlgefällige Tat zusätzliche 4FP zu bekommen. Dies kann nach einem Wurf dazu verwendet werden, um den QS der Probe zu erhöhen oder einen Misserfolg noch zu einem Erfolg zu machen. Dies gilt auch für Angriffe/Verteidigungen."))));
+		sonderfertigkeitenPage.getWriters().add(new ParagraphWriter("Krieger der Rondra", Collections.singleton(new ParagraphData("Bringt Erleichterung von 1 auf Überreden und Bekehren/Überzeugen bei Geweihten der Ronder, Praios und Kor."))));
 
 		final DefaultPage zaubertanzPage = new DefaultPage("Zaubertänze");
 		zaubertanzPage.getWriters().add(fillWriter(ZaubertanzWriter::new, ZaubertanzReader::new, "Tanz der Bilder", "Tanz der Liebe", "Tanz der Verteidigung", "Tanz ohne Ende"));
@@ -82,6 +83,8 @@ public class Manjula extends Person {
 
 		final DefaultPage itemPage = new DefaultPage("Gegenstände");
 		itemPage.getWriters().add(fillWriter(ElixierWriter::new, ElixierReader::new, "Berserkerelixier", "Heiltrank", "Schmerzwein", "Zaubertrank"));
+		itemPage.getWriters().add(new ParagraphWriter("Feuersalbe", Collections.singleton(new ParagraphData("Die Feuersalbe wird für 1 Minute auf die Haut aufgetragen und hält dann für die nächsten 8 Stunden. In der Zeit kann man nicht den Status 'Brennen' erhalten, und erhält 2 Schaden weniger durch Feuerschaden."))));
+		itemPage.getWriters().add(new ParagraphWriter("Weihwasser", Collections.singleton(new ParagraphData("Wird geworfen (Reichweite wie Wurfdolch), und macht bei Treffer d6xQS Schaden an Untoten."))));
 
 		final IPage rondraPage = new RondraPage();
 		final IPage otherPage = getOtherPage();
@@ -98,7 +101,10 @@ public class Manjula extends Person {
 		final DefaultPage page = new DefaultPage("Sonstiges");
 
 		final ParagraphData name = new ParagraphData("Name: Manjula bint Kirisha at Baburin (Manjula, Tochter von Kirisha aus Baburin)");
-		final List<ParagraphData> other = Arrays.asList(name);
+		final ParagraphData item1 = new ParagraphData("Blut von Belkelel: Eine Phiole mit Blut von Belkelel. Ist ein Talisman, der Manjula den Vorteil 'Zäher Hund' gewährt.");
+		final ParagraphData title1 = new ParagraphData("Rondras Segen: Erhalten als Belohnung für den Sieg im Rondrakampf. Den Stahlgrafen im Duell im Finale bezwungen.");
+		final ParagraphData title2 = new ParagraphData("Krieger der Rondra: Erhalten durch die Verteidigung des Rondra Tempels gegen den Drachen Maldrakar.");
+		final List<ParagraphData> other = Arrays.asList(name, item1, title1, title2);
 		page.getWriters().add(new ParagraphWriter("Sonstiges", other));
 
 		return page;
