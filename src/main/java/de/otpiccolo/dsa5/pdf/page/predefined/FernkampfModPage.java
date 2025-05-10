@@ -44,7 +44,7 @@ public class FernkampfModPage extends DefaultPage {
 		final List<IDataWriter> row3 = Arrays.asList(new ParagraphWriter(Collections.singleton(pg31)), new ParagraphWriter(Collections.singleton(pg32)));
 
 		final List<List<IDataWriter>> cellData = Arrays.asList(header, row1, row2, row3);
-		final TableData data = new TableData(new int[] { 1, 9 }, cellData);
+		final TableData data = new TableData(cellData, new int[] { 1, 9 });
 		final TableWriter table = new TableWriter(data);
 		getWriters().add(table);
 	}
@@ -74,7 +74,7 @@ public class FernkampfModPage extends DefaultPage {
 		final List<IDataWriter> row5 = Arrays.asList(new ParagraphWriter(Collections.singleton(pg51)), new ParagraphWriter(Collections.singleton(pg52)), new ParagraphWriter(Collections.singleton(pg53)));
 
 		final List<List<IDataWriter>> cellData = Arrays.asList(header, row1, row2, row3, row4, row5);
-		final TableData data = new TableData(new int[] { 1, 2, 7 }, cellData);
+		final TableData data = new TableData(cellData, new int[] { 1, 2, 7 });
 		final TableWriter table = new TableWriter(data);
 		getWriters().add(table);
 	}
@@ -102,7 +102,7 @@ public class FernkampfModPage extends DefaultPage {
 		final List<IDataWriter> row6 = Arrays.asList(new ParagraphWriter(Collections.singleton(pg61)), new ParagraphWriter(Collections.singleton(pg62)));
 
 		final List<List<IDataWriter>> cellData = Arrays.asList(header, row1, row2, row3, row4, row5, row6);
-		final TableData data = new TableData(new int[] { 7, 3 }, cellData);
+		final TableData data = new TableData(cellData, new int[] { 7, 3 });
 		final TableWriter table = new TableWriter(data);
 		getWriters().add(table);
 	}
@@ -132,7 +132,7 @@ public class FernkampfModPage extends DefaultPage {
 		final List<IDataWriter> row5 = Arrays.asList(new ParagraphWriter(Collections.singleton(pg51)), new ParagraphWriter(Collections.singleton(pg52)), new ParagraphWriter(Collections.singleton(pg53)));
 
 		final List<List<IDataWriter>> cellData = Arrays.asList(header, row1, row2, row3, row4, row5);
-		final TableData data = new TableData(new int[] { 2, 3, 2 }, cellData);
+		final TableData data = new TableData(cellData, new int[] { 2, 3, 2 });
 		final TableWriter table = new TableWriter(data);
 		getWriters().add(table);
 	}
@@ -154,7 +154,7 @@ public class FernkampfModPage extends DefaultPage {
 		final List<IDataWriter> row4 = Arrays.asList(new ParagraphWriter(Collections.singleton(pg41)), new ParagraphWriter(Collections.singleton(pg42)));
 
 		final List<List<IDataWriter>> cellData = Arrays.asList(header, row1, row2, row3, row4);
-		final TableData data = new TableData(new int[] { 1, 4 }, cellData);
+		final TableData data = new TableData(cellData, new int[] { 1, 4 });
 		final TableWriter table = new TableWriter(data);
 		getWriters().add(table);
 	}

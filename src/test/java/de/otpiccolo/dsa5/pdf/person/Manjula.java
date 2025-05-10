@@ -33,10 +33,13 @@ import de.otpiccolo.dsa5.data.zaubertradition.ZauberTraditionReader;
 import de.otpiccolo.dsa5.data.zaubertradition.ZauberTraditionWriter;
 import de.otpiccolo.dsa5.data.zaubertrick.ZaubertrickReader;
 import de.otpiccolo.dsa5.data.zaubertrick.ZaubertrickWriter;
+import de.otpiccolo.dsa5.pdf.data.IDataWriter;
 import de.otpiccolo.dsa5.pdf.data.image.ImageReader;
 import de.otpiccolo.dsa5.pdf.data.image.ImageWriter;
 import de.otpiccolo.dsa5.pdf.data.paragraph.ParagraphData;
 import de.otpiccolo.dsa5.pdf.data.paragraph.ParagraphWriter;
+import de.otpiccolo.dsa5.pdf.data.table.TableData;
+import de.otpiccolo.dsa5.pdf.data.table.TableWriter;
 import de.otpiccolo.dsa5.pdf.page.DefaultPage;
 import de.otpiccolo.dsa5.pdf.page.IPage;
 import de.otpiccolo.dsa5.pdf.page.predefined.SchicksalspunktePage;
@@ -81,11 +84,7 @@ public class Manjula extends Person {
 		sonstigeZauberPage.getWriters().add(fillWriter(ZaubertrickWriter::new, ZaubertrickReader::new, "Bauchreden", "Duft", "Glücksgriff", "Schminken"));
 		sonstigeZauberPage.getWriters().add(fillWriter(ZauberTraditionWriter::new, ZauberTraditionReader::new, "Zaubertänzer"));
 
-		final DefaultPage itemPage = new DefaultPage("Gegenstände");
-		itemPage.getWriters().add(fillWriter(ElixierWriter::new, ElixierReader::new, "Berserkerelixier", "Heiltrank", "Schmerzwein", "Zaubertrank"));
-		itemPage.getWriters().add(new ParagraphWriter("Feuersalbe", Collections.singleton(new ParagraphData("Die Feuersalbe wird für 1 Minute auf die Haut aufgetragen und hält dann für die nächsten 8 Stunden. In der Zeit kann man nicht den Status 'Brennen' erhalten, und erhält 2 Schaden weniger durch Feuerschaden."))));
-		itemPage.getWriters().add(new ParagraphWriter("Weihwasser", Collections.singleton(new ParagraphData("Wird geworfen (Reichweite wie Wurfdolch), und macht bei Treffer d6xQS Schaden an Untoten."))));
-
+		final IPage itemPage = getItemPage();
 		final IPage rondraPage = new RondraPage();
 		final IPage otherPage = getOtherPage();
 		final IPage zauberModPage = new ZauberModPage();
@@ -95,6 +94,19 @@ public class Manjula extends Person {
 		imagePage.getWriters().add(new ImageWriter(new ImageReader().readData("D:\\RP\\Bilder\\Manjula bint Kirisha at Baburin.jpg")));
 
 		setPages(Stream.of(vorteilPage, kampfPage, sonderfertigkeitenPage, zaubertanzPage, gewandzauberPage, sonstigeZauberPage, otherPage, rondraPage, zauberModPage, schipsPage, itemPage, imagePage));
+	}
+
+	private IPage getItemPage() {
+		final ParagraphWriter feuersalbe = new ParagraphWriter("Feuersalbe", Collections.singleton(new ParagraphData("Die Feuersalbe wird für 1 Minute auf die Haut aufgetragen und hält dann für die nächsten 8 Stunden. In der Zeit kann man nicht den Status 'Brennen' erhalten, und erhält 2 Schaden weniger durch Feuerschaden.")));
+		final ParagraphWriter weihwasser = new ParagraphWriter("Weihwasser", Collections.singleton(new ParagraphData("Wird geworfen (Reichweite wie Wurfdolch), und macht bei Treffer d6xQS Schaden an Untoten.")));
+		final List<IDataWriter> row1 = List.of(fillWriter(ElixierWriter::new, ElixierReader::new, "Heiltrank"), fillWriter(ElixierWriter::new, ElixierReader::new, "Zaubertrank"));
+		final List<IDataWriter> row2 = List.of(fillWriter(ElixierWriter::new, ElixierReader::new, "Berserkerelixier"), fillWriter(ElixierWriter::new, ElixierReader::new, "Schmerzwein"));
+		final List<IDataWriter> row3 = List.of(feuersalbe, weihwasser);
+		final List<List<IDataWriter>> rows = List.of(row1, row2, row3);
+		final TableData table = new TableData(rows, 5f);
+		final DefaultPage itemPage = new DefaultPage("Gegenstände");
+		itemPage.getWriters().add(new TableWriter(table));
+		return itemPage;
 	}
 
 	private IPage getOtherPage() {
