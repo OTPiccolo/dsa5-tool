@@ -13,7 +13,7 @@ import de.otpiccolo.dsa5.pdf.data.ADataWriter;
 import de.otpiccolo.pdf.PDUtil;
 
 /**
- * Class to write Vorteile to a document.
+ * Class to write Liturgien to a document.
  */
 public class LiturgieWriter extends ADataWriter {
 
@@ -36,7 +36,7 @@ public class LiturgieWriter extends ADataWriter {
 			for (final LiturgieData liturgie : data) {
 				space = writeTitle(liturgie.name(), content, space, 5f);
 				space = writeParagraph(liturgie.effect(), content, space, 5f);
-				final String data = "Kosten: " + liturgie.cost() + " / Zauberzeit: " + liturgie.castTime();
+				final String data = "Kosten: " + liturgie.cost() + " / Liturgiedauer: " + liturgie.castTime();
 				space = writeParagraph(data, content, space, 15f);
 			}
 			// Remove last Liturgie spacing.
