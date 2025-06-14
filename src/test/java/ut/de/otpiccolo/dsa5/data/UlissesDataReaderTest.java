@@ -38,6 +38,8 @@ import de.otpiccolo.dsa5.data.nachteile.NachteilData;
 import de.otpiccolo.dsa5.data.nachteile.NachteilReader;
 import de.otpiccolo.dsa5.data.predigt.PredigtData;
 import de.otpiccolo.dsa5.data.predigt.PredigtReader;
+import de.otpiccolo.dsa5.data.rituale.RitualData;
+import de.otpiccolo.dsa5.data.rituale.RitualReader;
 import de.otpiccolo.dsa5.data.segen.SegenData;
 import de.otpiccolo.dsa5.data.segen.SegenReader;
 import de.otpiccolo.dsa5.data.talentstilsonderfertigkeiten.TalentstilsonderfertigkeitData;
@@ -249,6 +251,15 @@ public class UlissesDataReaderTest {
 		final var data = reader.readData("Predigt der Zuversicht");
 
 		final var expected = new PredigtData("Predigt der Zuversicht", "QS ausgewählte Zuhörer können 1 Stunde lang eine einzige Stufe Furcht ignorieren. Nach Ablauf der Stunde wirkt die Stufe wieder. Die Wirkung wurde lediglich unterbrochen. Während der Stunde können die Zuhörer aber neue Stufen Furcht erleiden. Kein Zuhörer kann innerhalb von 24 Stunden mehr als einmal von dieser Predigt profitieren. Die Heldin muss für die Predigt 1 Schip einsetzen und sie ist nur einmal alle 24 Stunden einsetzbar.");
+		Assertions.assertEquals(expected, data);
+	}
+
+	@Test
+	public void testRitual() {
+		final var reader = new RitualReader();
+		final var data = reader.readData("Eins mit der Natur");
+
+		final var expected = new RitualData("Eins mit der Natur", "5 Minuten", "16 AsP", "Der Zauberer erhält während der Wirkungsdauer die SF Geländekunde für ein beliebiges Gelände. Besitzt er die SF bereits, so verdoppelt sich der Bonus, den er auf die Fertigkeiten erhält.");
 		Assertions.assertEquals(expected, data);
 	}
 
