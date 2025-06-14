@@ -18,6 +18,8 @@ import de.otpiccolo.dsa5.data.zauber.ZauberReader;
 import de.otpiccolo.dsa5.data.zauber.ZauberWriter;
 import de.otpiccolo.dsa5.data.zaubererweiterung.ZaubererweiterungReader;
 import de.otpiccolo.dsa5.data.zaubererweiterung.ZaubererweiterungWriter;
+import de.otpiccolo.dsa5.data.zaubertradition.ZauberTraditionReader;
+import de.otpiccolo.dsa5.data.zaubertradition.ZauberTraditionWriter;
 import de.otpiccolo.dsa5.pdf.data.image.ImageReader;
 import de.otpiccolo.dsa5.pdf.data.image.ImageWriter;
 import de.otpiccolo.dsa5.pdf.data.paragraph.ParagraphData;
@@ -55,6 +57,8 @@ public class Thyra extends Person {
 		zauberPage2.getWriters().add(fillWriter(ZauberWriter::new, ZauberReader::new, "Krötensprung", "Odem Arcanum"));
 		final DefaultPage zauberPage3 = new DefaultPage();
 		zauberPage3.getWriters().add(fillWriter(ZauberWriter::new, ZauberReader::new, "Tiergedanken"));
+		final DefaultPage zauberTraditionPage = new DefaultPage();
+		zauberTraditionPage.getWriters().add(fillWriter(ZauberTraditionWriter::new, ZauberTraditionReader::new, "Hexen"));
 
 		final DefaultPage itemPage = new DefaultPage("Gegenstände");
 		itemPage.getWriters().add(fillWriter(ElixierWriter::new, ElixierReader::new, "Berserkerelixier", "Heiltrank", "Zaubertrank"));
@@ -66,7 +70,7 @@ public class Thyra extends Person {
 		final DefaultPage imagePage = new DefaultPage();
 		imagePage.getWriters().add(new ImageWriter(new ImageReader().readData("D:\\RP\\Bilder\\Thyra.jpg")));
 
-		setPages(Stream.of(vorteilNachteilPage, kampfPage, zauberPage1, zauberPage2, zauberPage3, itemPage, otherPage, modPage, schipsPage, imagePage));
+		setPages(Stream.of(vorteilNachteilPage, kampfPage, zauberPage1, zauberPage2, zauberPage3, zauberTraditionPage, itemPage, otherPage, modPage, schipsPage, imagePage));
 	}
 
 	private IPage getOtherPage() {

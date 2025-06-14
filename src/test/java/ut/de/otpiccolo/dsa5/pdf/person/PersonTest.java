@@ -67,7 +67,9 @@ public class PersonTest {
 	}
 
 	private void writePerson(final Person person, final String source, final String destination) throws IOException {
-		person.setSource(new File(source));
+		if (source != null) {
+			person.setSource(new File(source));
+		}
 		person.setDestination(new File(destination));
 		person.writeDocument();
 		Desktop.getDesktop().open(new File(destination));
