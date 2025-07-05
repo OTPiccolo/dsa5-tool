@@ -9,6 +9,8 @@ import de.otpiccolo.dsa5.data.allgemeinesonderfertigkeiten.Allgemeinesonderferti
 import de.otpiccolo.dsa5.data.allgemeinesonderfertigkeiten.AllgemeinesonderfertigkeitWriter;
 import de.otpiccolo.dsa5.data.elixiere.ElixierReader;
 import de.otpiccolo.dsa5.data.elixiere.ElixierWriter;
+import de.otpiccolo.dsa5.data.erweitertertalentstil.ErweiterterTalentstilReader;
+import de.otpiccolo.dsa5.data.erweitertertalentstil.ErweiterterTalentstilWriter;
 import de.otpiccolo.dsa5.data.gewandzauber.GewandzauberReader;
 import de.otpiccolo.dsa5.data.gewandzauber.GewandzauberWriter;
 import de.otpiccolo.dsa5.data.kampfsonderfertigkeiten.KampfsonderfertigkeitReader;
@@ -56,8 +58,9 @@ public class Manjula extends Person {
 	 */
 	public Manjula() {
 		final DefaultPage vorteilPage = new DefaultPage("Vorteile & Nachteile");
-		vorteilPage.getWriters().add(fillWriter(VorteilWriter::new, VorteilReader::new, "Begabung", "Gutaussehend I-II", "Hart im Nehmen", "Verbesserte Regeneration (Astralenergie) I-III", "Weitreichende Zaubertänze I-III", "Zäher Hund"));
+		vorteilPage.getWriters().add(fillWriter(VorteilWriter::new, VorteilReader::new, "Adel I-III", "Drachentöter", "Gutaussehend I-II", "Hart im Nehmen", "Verbesserte Regeneration (Astralenergie) I-III", "Weitreichende Zaubertänze I-III", "Zäher Hund"));
 		vorteilPage.getWriters().add(fillWriter(NachteilWriter::new, NachteilReader::new, "Angst vor … I-III", "Giftanfällig I-II", "Krankheitsanfällig I-II", "Unfähig"));
+		vorteilPage.getWriters().add(new ParagraphWriter("Rabenschlächter", Collections.singleton(new ParagraphData("Der Träger dieses Nachteils hat bei sozialen Interkationen mit Boron-Geweihte eine Erschwernis von 2."))));
 
 		final DefaultPage kampfPage = new DefaultPage("Kampfsonderfertigkeiten");
 		kampfPage.getWriters().add(fillWriter(KampfsonderfertigkeitWriter::new, KampfsonderfertigkeitReader::new, "Einhändiger Kampf", "Finte I-III", "Klingensturm"));
@@ -69,16 +72,17 @@ public class Manjula extends Person {
 		sonderfertigkeitenPage.getWriters().add(fillWriter(MagischeSonderfertigkeitWriter::new, MagischeSonderfertigkeitReader::new, "Magische Regeneration I-II", "Meisterliche Regeneration"));
 		sonderfertigkeitenPage.getWriters().add(fillWriter(AllgemeinesonderfertigkeitWriter::new, AllgemeinesonderfertigkeitReader::new, "Ortskenntnis", "Rahjasutra-Kenntnisse"));
 		sonderfertigkeitenPage.getWriters().add(fillWriter(TalentstilsonderfertigkeitWriter::new, TalentstilsonderfertigkeitReader::new, "Weg der Künstlerin"));
+		sonderfertigkeitenPage.getWriters().add(fillWriter(ErweiterterTalentstilWriter::new, ErweiterterTalentstilReader::new, "Kunstbegabt"));
 		sonderfertigkeitenPage.getWriters().add(new ParagraphWriter("Rondras Segen", Collections.singleton(new ParagraphData("Rondras Segen ermöglicht einen einmal pro Tag, für ein Rondra wohlgefällige Tat zusätzliche 4FP zu bekommen. Dies kann nach einem Wurf dazu verwendet werden, um den QS der Probe zu erhöhen oder einen Misserfolg noch zu einem Erfolg zu machen. Dies gilt auch für Angriffe/Verteidigungen."))));
 		sonderfertigkeitenPage.getWriters().add(new ParagraphWriter("Krieger der Rondra", Collections.singleton(new ParagraphData("Bringt Erleichterung von 1 auf Überreden und Bekehren/Überzeugen bei Geweihten der Ronder, Praios und Kor."))));
 		sonderfertigkeitenPage.getWriters().add(new ParagraphWriter("Stille der Nacht", Collections.singleton(new ParagraphData("Erleichterung von 1 auf Verbergen in Dunkelheit."))));
 		sonderfertigkeitenPage.getWriters().add(new ParagraphWriter("Spezieller Stoff für Gewand", Collections.singleton(new ParagraphData("Erhält 2 RS gegen kurze Waffen."))));
 
 		final DefaultPage zaubertanzPage = new DefaultPage("Zaubertänze");
-		zaubertanzPage.getWriters().add(fillWriter(ZaubertanzWriter::new, ZaubertanzReader::new, "Tanz der Bilder", "Tanz der Liebe", "Tanz der Verteidigung", "Tanz ohne Ende"));
+		zaubertanzPage.getWriters().add(fillWriter(ZaubertanzWriter::new, ZaubertanzReader::new, "Tanz der Bilder", "Tanz der Heilung", "Tanz der Liebe", "Tanz der Verteidigung", "Tanz ohne Ende"));
 
 		final DefaultPage gewandzauberPage = new DefaultPage("Gewandzauber");
-		gewandzauberPage.getWriters().add(fillWriter(GewandzauberWriter::new, GewandzauberReader::new, "Besitzanspruch", "Diebesgewand", "Schmutzabweisend", "Schutzgewand I-II"));
+		gewandzauberPage.getWriters().add(fillWriter(GewandzauberWriter::new, GewandzauberReader::new, "Besitzanspruch", "Diebesgewand", "Gewand der Heilung", "Schmutzabweisend", "Schutzgewand I-II"));
 
 		final DefaultPage zauberPage = new DefaultPage("Zaubersprüche");
 		zauberPage.getWriters().add(fillWriter(ZauberWriter::new, ZauberReader::new, "Chamaelioni"));
@@ -124,7 +128,8 @@ public class Manjula extends Person {
 		final ParagraphData title1 = new ParagraphData("Rondras Segen: Erhalten als Belohnung für den Sieg im Rondrakampf. Den Stahlgrafen im Duell im Finale bezwungen.");
 		final ParagraphData title2 = new ParagraphData("Krieger der Rondra: Erhalten durch die Verteidigung des Rondra Tempels gegen den Drachen Maldrakar.");
 		final ParagraphData boon = new ParagraphData("Stille der Nacht: Geschenk Borons. Gibt den Zauber \"Chamelioni\" auf FW14. Gibt auch +1 Erleichterung auf \"Verbergen\" in Dunkelheit.");
-		final List<ParagraphData> other = Arrays.asList(name, item1, item2, title1, title2, boon);
+		final ParagraphData notoriety = new ParagraphData("Rabenschlächter: Ein schlechter Ruf bei Boron-Gläubigen, da die Unterstützung von Maldrakar, dem Totenbeschwörer angenommen wurde.");
+		final List<ParagraphData> other = Arrays.asList(name, item1, item2, title1, title2, boon, notoriety);
 		page.getWriters().add(new ParagraphWriter("Sonstiges", other));
 
 		return page;
