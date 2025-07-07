@@ -40,6 +40,8 @@ import de.otpiccolo.dsa5.data.predigt.PredigtData;
 import de.otpiccolo.dsa5.data.predigt.PredigtReader;
 import de.otpiccolo.dsa5.data.rituale.RitualData;
 import de.otpiccolo.dsa5.data.rituale.RitualReader;
+import de.otpiccolo.dsa5.data.schicksalspunktsonderfertigkeiten.SchicksalspunktsonderfertigkeitData;
+import de.otpiccolo.dsa5.data.schicksalspunktsonderfertigkeiten.SchicksalspunktsonderfertigkeitReader;
 import de.otpiccolo.dsa5.data.segen.SegenData;
 import de.otpiccolo.dsa5.data.segen.SegenReader;
 import de.otpiccolo.dsa5.data.talentstilsonderfertigkeiten.TalentstilsonderfertigkeitData;
@@ -278,6 +280,15 @@ public class UlissesDataReaderTest {
 		final var data = reader.readData("Weg d. Bardin");
 
 		final var expected = new TalentstilsonderfertigkeitData("Weg d. Bardin", "Die Heldin erhält bei Musizieren und Singen eine Erleichterung von 1.");
+		Assertions.assertEquals(expected, data);
+	}
+
+	@Test
+	public void testSchicksalspunktSonderfertigkeit() {
+		final var reader = new SchicksalspunktsonderfertigkeitReader();
+		final var data = reader.readData("Ausweichen verbessern");
+
+		final var expected = new SchicksalspunktsonderfertigkeitData("Ausweichen verbessern", "Mittels dieser Sonderfertigkeit kann der Held Schicksalspunkte für Ergebnis verbessern (Ausweichen) einsetzen.");
 		Assertions.assertEquals(expected, data);
 	}
 
