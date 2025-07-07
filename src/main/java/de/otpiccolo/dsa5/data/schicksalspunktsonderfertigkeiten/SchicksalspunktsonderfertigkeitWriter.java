@@ -13,17 +13,17 @@ import de.otpiccolo.dsa5.pdf.data.ADataWriter;
 import de.otpiccolo.pdf.PDUtil;
 
 /**
- * Class to write Allgemeine Sonderfertigkeiten to a document.
+ * Class to write Schicksalspunkt-Sonderfertigkeiten to a document.
  */
 public class SchicksalspunktsonderfertigkeitWriter extends ADataWriter {
 
 	private final Collection<SchicksalspunktsonderfertigkeitData> data;
 
 	/**
-	 * A collection containing Allgemeine Sonderfertigkeiten.
+	 * A collection containing Schicksalspunkt-Sonderfertigkeiten.
 	 *
 	 * @param data
-	 *            The Allgemeine Sonderfertigkeiten.
+	 *            The Schicksalspunkt-Sonderfertigkeiten.
 	 */
 	public SchicksalspunktsonderfertigkeitWriter(final Collection<SchicksalspunktsonderfertigkeitData> data) {
 		this.data = data;
@@ -37,7 +37,7 @@ public class SchicksalspunktsonderfertigkeitWriter extends ADataWriter {
 				space = writeTitle(sonderfertigkeit.name(), content, space, 5f);
 				space = writeParagraph(sonderfertigkeit.rule(), content, space, 15f);
 			}
-			// Remove last Allgemeine Sonderfertigkeit spacing.
+			// Remove last Schicksalspunkt-Sonderfertigkeit spacing.
 			space.setUpperRightY(space.getUpperRightY() + 15f);
 			drawRectangle(content, space, availableSpace);
 		}
