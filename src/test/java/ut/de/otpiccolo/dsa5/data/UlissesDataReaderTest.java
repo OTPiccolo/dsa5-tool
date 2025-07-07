@@ -6,6 +6,8 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import de.otpiccolo.dsa5.data.BannSchutzkreis.BannSchutzkreisData;
+import de.otpiccolo.dsa5.data.BannSchutzkreis.BannSchutzkreisReader;
 import de.otpiccolo.dsa5.data.allgemeinesonderfertigkeiten.AllgemeinesonderfertigkeitData;
 import de.otpiccolo.dsa5.data.allgemeinesonderfertigkeiten.AllgemeinesonderfertigkeitReader;
 import de.otpiccolo.dsa5.data.elfenlied.ElfenliedData;
@@ -80,6 +82,15 @@ public class UlissesDataReaderTest {
 		final var data = reader.readData("Fischer");
 
 		final var expected = new AllgemeinesonderfertigkeitData("Fischer", "Mit dieser Sonderfertigkeit kann der Held erfolgreicher fischen. Bei einer erfolgreichen Probe auf Fischen & Angeln um Nahrung zu erbeuten kann er 1 QS mehr Nahrung erjagen. Ob es in dem Gewässer genügend essbare Fische und Meeresfrüchte gibt, muss der Spielleiter vorher entscheiden.");
+		Assertions.assertEquals(expected, data);
+	}
+
+	@Test
+	public void testBannSchutzkreis() {
+		final var reader = new BannSchutzkreisReader();
+		final var data = reader.readData("Bann-/Schutzkreis gegen Feen");
+
+		final var expected = new BannSchutzkreisData("Bann-/Schutzkreis gegen Feen", "6 AsP", "Die erste Fee, die sich dem Kreis auf 7 Schritt nähert, wird in ihn hineingezogen und kann ihn während der Wirkungsdauer nicht mehr verlassen.", "Feen können den Kreis nicht betreten.");
 		Assertions.assertEquals(expected, data);
 	}
 
